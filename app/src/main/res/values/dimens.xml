@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- App dimens -->
+    <dimen name="title_splash">45sp</dimen>
+    <dimen name="imagen_splash">325</dimen>
+
+    <!-- Login screen -->
+    <dimen name="dim_text_register">15sp</dimen>
 </resources>

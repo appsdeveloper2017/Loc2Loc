@@ -7,5 +7,25 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="texto_app">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Splash screen -->
+    <style name="splash_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="titulo_splash" parent="texto_app">
+        <item name="android:textSize">@dimen/title_splash</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <!-- Login screen-->
+    <style name="register_text">
+        <item name="android:textSize">@dimen/dim_text_register</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

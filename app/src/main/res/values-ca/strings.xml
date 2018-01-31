@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Loc2Loc</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Nom d\'usuari o email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Entra</string>
+    <string name="action_register">Registra\'t</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">L\'adreça de correu és invalida</string>
+    <string name="error_invalid_password">El password es massa curt</string>
+    <string name="error_incorrect_password">Password incorrecte</string>
+    <string name="error_field_required">Camp requerit</string>
+    <string name="permission_rationale">"Els permisos per accedir als Contactes són necessaris
+        per permetre l'autocompletat del email."</string>
+</resources>
