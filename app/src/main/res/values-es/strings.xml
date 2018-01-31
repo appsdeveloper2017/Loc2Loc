@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Loc2Loc</string>
+    <string name="subtitle">Localiza a los tuyos!</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Nombre de usuario o email</string>
