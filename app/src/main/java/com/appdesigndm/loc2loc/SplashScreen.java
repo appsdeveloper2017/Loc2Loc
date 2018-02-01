@@ -4,20 +4,22 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private TextView titulo_splash;
-    private TextView subtitulo;
+private TextView titulo_screen;
+private ImageView imagen_splash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        titulo_splash = (TextView)findViewById(R.id.titulo_splash);
-        subtitulo = (TextView)findViewById(R.id.subtitulo);
+
+        titulo_screen = (TextView)findViewById(R.id.titulo_splash);
+        imagen_splash = (ImageView)findViewById(R.id.imagen_splash);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -28,6 +30,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        },1500);
+        },2000);
     }
 }
