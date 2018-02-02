@@ -6,6 +6,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- Splash screen -->
+    <color name="splash_background">#E3F2FD</color>
+    <color name="splash_text">#8C9EFF</color>
+
     <!-- Login screen -->
     <color name="blue">#0070FF</color>
 </resources>
