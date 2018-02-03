@@ -15,7 +15,7 @@
     <!-- Splash screen dimens -->
     <dimen name="title_splash">60sp</dimen>
     <dimen name="subtitle_splash">24sp</dimen>
-    <dimen name="imagen_splash">325dp</dimen>
+    <dimen name="imagen_splash">200dp</dimen>
 
     <!-- Login screen -->
     <dimen name="dim_text_register">15sp</dimen>
