@@ -3,6 +3,7 @@ package com.appdesigndm.loc2loc;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -63,9 +66,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    private ProgressBar mProgressView;
+    private ScrollView mLoginFormView;
     private Button mEmailSignInButton;
+    private TextView mRegisterTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +85,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        mLoginFormView = (ScrollView) findViewById(R.id.login_form);
+        mProgressView = (ProgressBar) findViewById(R.id.login_progress);
+        mRegisterTextView = (TextView) findViewById(R.id.clickable_text_register);
     }
 
     private void setupListeners() {
@@ -105,6 +110,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 attemptLogin();
             }
         });
+
+        mRegisterTextView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRegisterActivity();
+            }
+        });
+    }
+
+    private void openRegisterActivity() {
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+        finish();
     }
 
     private void populateAutoComplete() {
