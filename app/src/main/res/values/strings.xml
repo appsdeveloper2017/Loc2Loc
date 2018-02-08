@@ -3,15 +3,31 @@
     <string name="subtitle">Localiza a los tuyos!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Nombre de usuario o email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">nombre de usuario o email</string>
+    <string name="prompt_password">password</string>
     <string name="action_sign_in">Entra</string>
-    <string name="action_register">Registrate</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">La dirección de correo es invalida</string>
+    <string name="action_register">Regístrate</string>
+    <string name="action_sign_in_short">Entra</string>
+    <string name="error_invalid_email">La dirección de correo es inválida</string>
     <string name="error_invalid_password">Formato de password incorrecto</string>
     <string name="error_incorrect_password">Password incorrecto</string>
     <string name="error_field_required">Campo requerido</string>
     <string name="permission_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
+
+    <!-- String related to register -->
+    <string name="prompt_register_user_name">nombre de usuario</string>
+    <string name="prompt_register_email">email</string>
+    <string name="prompt_register_repeat_email">repite el email</string>
+    <string name="prompt_register_password">password</string>
+    <string name="action_save">Guardar</string>
+    <string name="error_invalid_register_user_name">El nombre de usuario es inválido</string>
+    <string name="error_invalid_register_email">La dirección de correo es inválida</string>
+    <string name="error_invalid_register_repeat_email">Las direcciones de correo no coinciden</string>
+    <string name="error_invalid_register_password">Formato de password inválido</string>
+    <string name="error_incorrect_register_password">Password incorrecto</string>
+    <string name="error_field_register_required">Campo requerido</string>
+    <string name="permission_register_rationale">"Los permisos para acceder a los Contactos son necesarios
+        para permitir el autocompletado del email."</string>
+
 </resources>

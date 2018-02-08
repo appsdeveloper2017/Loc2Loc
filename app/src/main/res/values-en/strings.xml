@@ -3,8 +3,8 @@
     <string name="subtitle">Locate yours!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">User name or email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">user name or email</string>
+    <string name="prompt_password">password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -14,4 +14,20 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
+
+    <!-- String related to register -->
+    <string name="prompt_register_user_name">user name</string>
+    <string name="prompt_register_email">email</string>
+    <string name="prompt_register_repeat_email">repeat email</string>
+    <string name="prompt_register_password">password</string>
+    <string name="action_save">Save</string>
+    <string name="error_invalid_register_user_name">This user name is invalid</string>
+    <string name="error_invalid_register_email">This email address is invalid</string>
+    <string name="error_invalid_register_repeat_email">The email addresses do not match</string>
+    <string name="error_invalid_register_password">Invalid password format</string>
+    <string name="error_incorrect_register_password">This password is incorrect</string>
+    <string name="error_field_register_required">This field is required</string>
+    <string name="permission_register_rationale">"Contacts permissions are needed for providing email
+        completions."</string>
+
 </resources>
