@@ -2,13 +2,14 @@ package com.appdesigndm.loc2loc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -24,7 +25,14 @@ public class SplashScreen extends AppCompatActivity {
 
         init();
         animateOnCreateViews();
+        LocApplication.mAuth = FirebaseAuth.getInstance();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        LocApplication.currentUser = LocApplication.mAuth.getCurrentUser();
     }
 
     private void init() {
@@ -59,7 +67,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(intent);
-
+                finish();
             }
         }, 1500);
 
