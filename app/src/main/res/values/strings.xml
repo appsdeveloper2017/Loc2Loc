@@ -14,6 +14,9 @@
     <string name="error_field_required">Campo requerido</string>
     <string name="permission_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
+    <string name="error_user_does_not_exists">El usuario no existe</string>
+    <string name="error_invalid_user_password">Password incorrecto</string>
+    <string name="error_connection">Error en la conexión: Pruébalo de nuevo más tarde</string>
 
     <!-- String related to register -->
     <string name="prompt_register_user_name">nombre de usuario</string>
@@ -29,5 +32,8 @@
     <string name="error_field_register_required">Campo requerido</string>
     <string name="permission_register_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
+    <string name="error_user_already_exists">El usuario ya existe</string>
+    <string name="error_weak_password">La contraseña es demasiado débil</string>
+    <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
 </resources>

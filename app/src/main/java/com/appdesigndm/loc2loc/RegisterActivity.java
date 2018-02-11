@@ -6,12 +6,10 @@ import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
-import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -19,6 +17,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +29,15 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,17 +54,6 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the register task to ensure we can cancel it if requested.
-     */
-    private UserRegisterTask mAuthTask = null;
     private Context mContext;
 
     // UI references.
@@ -162,14 +159,10 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      * errors are presented and no actual register attempt is made.
      */
     private void attemptRegister() {
-        if (mAuthTask != null) {
-            return;
-        }
-
         resetErrors();
 
         // Store values at the time of the register attempt.
-        String userName = mUserNameView.getText().toString();
+        final String userName = mUserNameView.getText().toString();
         String email = mEmailView.getText().toString();
         String repeatEmail = mRepeatEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
@@ -225,9 +218,50 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user register attempt.
             showProgress(true);
-            mAuthTask = new UserRegisterTask(email, password);
-            mAuthTask.execute((Void) null);
+            LocApplication.fAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
+                                saveUserData(userName);
+                                openMainActivity();
+                            } else {
+                                showRegisterError(task);
+                            }
+                            showProgress(false);
+                        }
+                    });
         }
+    }
+
+    private void saveUserData(String userName) {
+        DatabaseReference dbRef = LocApplication.fDatabase.getReference();
+        User user = new User(userName, LocApplication.fCurrentUser.getEmail());
+        dbRef.child(LocApplication.USER).setValue(user);
+    }
+
+    private void showRegisterError(@NonNull Task<AuthResult> task) {
+        Toast t = Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_SHORT);
+        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+            t.setText(R.string.error_user_already_exists);
+        } else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+            t.setText(R.string.error_weak_password);
+        } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+            t.setText(R.string.error_malformed_mail);
+        } else {
+            t.setText(R.string.error_connection);
+        }
+        t.setGravity(Gravity.CENTER, 0, 0);
+        t.show();
+
+    }
+
+    private void openMainActivity() {
+        // TODO: open main activity
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//        finish();
     }
 
     private void resetErrors() {
@@ -340,63 +374,4 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous register/registration task used to authenticate
-     * the user.
-     */
-    public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserRegisterTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                Intent intent = new Intent(mContext, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
-

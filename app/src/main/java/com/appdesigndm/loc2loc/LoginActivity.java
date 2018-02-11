@@ -209,12 +209,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            LocApplication.mAuth.signInWithEmailAndPassword(email, password)
+            LocApplication.fAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                LocApplication.currentUser = LocApplication.mAuth.getCurrentUser();
+                                LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
+                                openMainActivity();
                             } else {
                                 showLoginError(task);
                             }
@@ -224,14 +225,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    private void openMainActivity() {
+        // TODO: open main activity
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+//        finish();
+    }
+
     private void showLoginError(@NonNull Task<AuthResult> task) {
         Toast t = Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT);
         if (task.getException() instanceof FirebaseAuthInvalidUserException) {
-            t.setText("El usuario no existe");
+            t.setText(R.string.error_user_does_not_exists);
         } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-            t.setText("Password incorrecto");
+            t.setText(R.string.error_invalid_user_password);
         } else {
-            t.setText("Error en la conexión: Por favor, vuelva a intentarlo más tarde");
+            t.setText(R.string.error_connection);
         }
         t.setGravity(Gravity.CENTER, 0, 0);
         t.show();

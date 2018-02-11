@@ -14,6 +14,9 @@
     <string name="error_field_required">Camp requerit</string>
     <string name="permission_rationale">"Els permisos per accedir als Contactes són necessaris
         per permetre l'autocompletat del email."</string>
+    <string name="error_user_does_not_exists">L\'usuari no existeix</string>
+    <string name="error_invalid_user_password">Password incorrecte</string>
+    <string name="error_connection">Error a la conexió: Prova-ho de nou més tard</string>
 
     <!-- String related to register -->
     <string name="prompt_register_user_name">nom d\'usuari</string>
@@ -29,5 +32,8 @@
     <string name="error_field_register_required">Camp requerit</string>
     <string name="permission_register_rationale">"Els permisos per accedir als Contactes són necessaris
         per permetre l'autocompletat del email."</string>
+    <string name="error_user_already_exists">L\'usuari ja existeix</string>
+    <string name="error_weak_password">La contrasenya és massa feble</string>
+    <string name="error_malformed_mail">Adreça de correu mal formada</string>
 
 </resources>

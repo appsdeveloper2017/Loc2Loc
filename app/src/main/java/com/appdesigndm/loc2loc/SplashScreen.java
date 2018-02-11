@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -25,14 +26,15 @@ public class SplashScreen extends AppCompatActivity {
 
         init();
         animateOnCreateViews();
-        LocApplication.mAuth = FirebaseAuth.getInstance();
+        LocApplication.fAuth = FirebaseAuth.getInstance();
+        LocApplication.fDatabase = FirebaseDatabase.getInstance();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        LocApplication.currentUser = LocApplication.mAuth.getCurrentUser();
+        LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
     }
 
     private void init() {
