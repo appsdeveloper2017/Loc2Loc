@@ -1,6 +1,8 @@
 package com.appdesigndm.loc2loc;
 
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,8 +19,17 @@ public class LocApplication extends Application {
     public static FirebaseDatabase fDatabase;
 
     // Childs nodes for database
-    public static String USER = "User";
+    public static String USERS = "Users";
 
     public LocApplication() {
     }
+
+    public static void printShort(Context context, String text) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void printLong(Context context, String text) {
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+    }
+
 }

@@ -6,13 +6,15 @@ import android.os.Parcelable;
 
 public class User implements Parcelable {
 
+    private String id;
     private String name;
     private String email;
 
     public User() {
     }
 
-    public User(String name, String email) {
+    public User(String name, String email, String id) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
@@ -23,11 +25,13 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(email);
     }
 
     public void readFromParcel(Parcel in) {
+        id = in.readString();
         name = in.readString();
         email = in.readString();
     }
@@ -53,9 +57,18 @@ public class User implements Parcelable {
         this.email = email;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
@@ -68,6 +81,7 @@ public class User implements Parcelable {
 
         User user = (User) o;
 
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         return email != null ? email.equals(user.email) : user.email == null;
     }

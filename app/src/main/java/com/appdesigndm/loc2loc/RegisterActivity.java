@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -225,11 +226,12 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                             if (task.isSuccessful()) {
                                 LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
                                 saveUserData(userName);
+                                showProgress(false);
                                 openMainActivity();
                             } else {
                                 showRegisterError(task);
+                                showProgress(false);
                             }
-                            showProgress(false);
                         }
                     });
         }
@@ -237,8 +239,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
 
     private void saveUserData(String userName) {
         DatabaseReference dbRef = LocApplication.fDatabase.getReference();
-        User user = new User(userName, LocApplication.fCurrentUser.getEmail());
-        dbRef.child(LocApplication.USER).setValue(user);
+        User user = new User(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
+        dbRef.child(LocApplication.USERS).child(user.getId()).setValue(user);
     }
 
     private void showRegisterError(@NonNull Task<AuthResult> task) {
@@ -258,10 +260,9 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     }
 
     private void openMainActivity() {
-        // TODO: open main activity
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void resetErrors() {

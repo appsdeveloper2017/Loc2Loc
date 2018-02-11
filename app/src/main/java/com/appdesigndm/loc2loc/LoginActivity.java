@@ -215,21 +215,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
+                                showProgress(false);
                                 openMainActivity();
                             } else {
                                 showLoginError(task);
+                                showProgress(false);
                             }
-                            showProgress(false);
                         }
                     });
         }
     }
 
     private void openMainActivity() {
-        // TODO: open main activity
-//        Intent intent = new Intent(this, MainActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void showLoginError(@NonNull Task<AuthResult> task) {
