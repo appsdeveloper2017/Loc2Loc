@@ -35,7 +35,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onStart();
 
         LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
-        String id = LocApplication.fCurrentUser.getUid();
     }
 
     private void init() {
@@ -68,16 +67,16 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-//                if (LocApplication.fCurrentUser != null) {
-//                    intent.setClass(SplashScreen.this, MainActivity.class);
-//                } else {
+                if (LocApplication.fCurrentUser != null) {
+                    intent.setClass(SplashScreen.this, MainActivity.class);
+                } else {
                     intent.setClass(SplashScreen.this, LoginActivity.class);
-//                }
+                }
                 startActivity(intent);
                 finish();
 
             }
-        }, 500);
+        }, 100);
 
     }
 }

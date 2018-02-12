@@ -38,6 +38,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
@@ -225,9 +226,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
-                                saveUserData(userName);
-                                showProgress(false);
-                                openMainActivity();
+                                updateAuthData(userName);
                             } else {
                                 showRegisterError(task);
                                 showProgress(false);
@@ -237,10 +236,23 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         }
     }
 
-    private void saveUserData(String userName) {
-        DatabaseReference dbRef = LocApplication.fDatabase.getReference();
-        User user = new User(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
-        dbRef.child(LocApplication.USERS).child(user.getId()).setValue(user);
+    private void updateAuthData(final String userName) {
+        // Update Auth profile
+        UserProfileChangeRequest.Builder userBuilder = new UserProfileChangeRequest.Builder();
+        LocApplication.fCurrentUser.updateProfile(userBuilder.setDisplayName(userName).build())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                // TODO: Select profile photo
+                LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
+                // Update DDBB
+                DatabaseReference dbRef = LocApplication.fDatabase.getReference();
+                User user = new User(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
+                dbRef.child(LocApplication.USERS).child(user.getId()).setValue(user);
+                showProgress(false);
+                openMainActivity();
+            }
+        });
     }
 
     private void showRegisterError(@NonNull Task<AuthResult> task) {
