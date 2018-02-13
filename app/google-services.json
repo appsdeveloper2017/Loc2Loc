@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "442819963793-trp8imue74lg5helf2iemtjppbgj151f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appdesigndm.loc2loc",
+            "certificate_hash": "dd50567eec675c04ec4eaad6bf9b78b1d99e5649"
+          }
+        },
+        {
           "client_id": "442819963793-qsa1u57keo5rjjeccqb8fjoeedbdlqvg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
