@@ -1,4 +1,4 @@
-package com.appdesigndm.loc2loc;
+package com.appdesigndm.loc2loc.Login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,6 +31,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.LocApplication;
+import com.appdesigndm.loc2loc.MainActivity;
+import com.appdesigndm.loc2loc.R;
+import com.appdesigndm.loc2loc.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

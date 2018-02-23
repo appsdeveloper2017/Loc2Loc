@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.appdesigndm.loc2loc.Login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -70,7 +71,8 @@ public class SplashScreen extends AppCompatActivity {
                 if (LocApplication.fCurrentUser != null) {
                     intent.setClass(SplashScreen.this, MainActivity.class);
                 } else {
-                    intent.setClass(SplashScreen.this, LoginActivity.class);
+//                    intent.setClass(SplashScreen.this, LoginActivity.class);
+                    intent.setClass(SplashScreen.this, AccesActivity.class);
                 }
                 startActivity(intent);
                 finish();

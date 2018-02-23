@@ -12,4 +12,7 @@
 
     <!-- Login screen -->
     <color name="blue">#0070FF</color>
+
+    <!-- Main screen -->
+    <color name="end_color">#a2b1f1</color>
 </resources>
