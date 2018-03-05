@@ -2,7 +2,6 @@ package com.appdesigndm.loc2loc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,9 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-import com.appdesigndm.loc2loc.Login.LoginActivity;
+import com.appdesigndm.loc2loc.Login.AccesActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
 
     private void logout() {
         LocApplication.fAuth.signOut();
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, AccesActivity.class));
         finish();
     }
 

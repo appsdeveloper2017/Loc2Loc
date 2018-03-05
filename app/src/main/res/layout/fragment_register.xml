@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/xlarge_margin"
     android:paddingRight="@dimen/xlarge_margin"
     android:paddingTop="@dimen/xlarge_margin"
-    tools:context="com.appdesigndm.loc2loc.RegisterActivity">
+    tools:context="com.appdesigndm.loc2loc.Login.RegisterFragment">
 
     <!-- Register progress -->
     <ProgressBar

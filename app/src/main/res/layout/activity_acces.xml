@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appdesigndm.loc2loc.AccesActivity">
+    tools:context="com.appdesigndm.loc2loc.Login.AccesActivity">
 
     <FrameLayout
         android:id="@+id/acces_container"

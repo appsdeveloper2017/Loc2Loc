@@ -13,7 +13,7 @@ import com.appdesigndm.loc2loc.Login.AccesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     // UI references
     private ImageView imageSplash;
@@ -69,10 +69,10 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent();
                 if (LocApplication.fCurrentUser != null) {
-                    intent.setClass(SplashScreen.this, MainActivity.class);
+                    intent.setClass(SplashScreenActivity.this, MainActivity.class);
                 } else {
-//                    intent.setClass(SplashScreen.this, LoginActivity.class);
-                    intent.setClass(SplashScreen.this, AccesActivity.class);
+//                    intent.setClass(SplashScreenActivity.this, LoginActivity.class);
+                    intent.setClass(SplashScreenActivity.this, AccesActivity.class);
                 }
                 startActivity(intent);
                 finish();

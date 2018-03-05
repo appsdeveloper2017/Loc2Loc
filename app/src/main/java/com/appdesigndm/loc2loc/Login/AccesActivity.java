@@ -1,9 +1,9 @@
-package com.appdesigndm.loc2loc;
+package com.appdesigndm.loc2loc.Login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.appdesigndm.loc2loc.Login.LoginFragment;
+import com.appdesigndm.loc2loc.R;
 
 public class AccesActivity extends AppCompatActivity {
 

@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/xlarge_margin"
     android:paddingRight="@dimen/xlarge_margin"
     android:paddingTop="@dimen/xlarge_margin"
-    tools:context="com.appdesigndm.loc2loc.Login.LoginActivity">
+    tools:context="com.appdesigndm.loc2loc.Login.LoginFragment">
 
     <!-- Login progress -->
     <ProgressBar

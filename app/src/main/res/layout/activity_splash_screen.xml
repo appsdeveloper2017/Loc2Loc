@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/xlarge_margin"
     android:background="@drawable/degradado"
-    tools:context="com.appdesigndm.loc2loc.SplashScreen">
+    tools:context="com.appdesigndm.loc2loc.SplashScreenActivity">
 
     <TextView
         android:id="@+id/titulo_splash"
