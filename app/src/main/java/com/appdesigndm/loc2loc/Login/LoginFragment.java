@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -12,7 +11,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -35,6 +33,7 @@ import android.widget.Toast;
 
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
+import com.appdesigndm.loc2loc.PermissionUtils;
 import com.appdesigndm.loc2loc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,22 +49,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    public static final int MIN_PASSWORD_LENGTH = 3;
-    public static final String MATCH_LOWERCASE_CHARS = ".*[a-z].*";
-    public static final String MATCH_UPPERCASE_CHARS = ".*[A-Z].*";
-    public static final String MATCH_NUMBERS = ".*[0-9].*";
 
     // UI references.
     @BindView(R.id.email)
@@ -124,33 +111,11 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
     }
 
     private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
+        if (!PermissionUtils.mayRequestContacts(getActivity(), mEmailView)) {
             return;
         }
 
         getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (getContext().checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
     }
 
     /**
@@ -159,13 +124,10 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
+        if (PermissionUtils.isPermissionGranted(requestCode, permissions, grantResults)) {
+            populateAutoComplete();
         }
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -255,8 +217,8 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
     }
 
     private boolean isPasswordValid(String password) {
-        return (password.length() > MIN_PASSWORD_LENGTH) && (password.matches(MATCH_LOWERCASE_CHARS) &&
-                (password.matches(MATCH_NUMBERS)) && password.matches(MATCH_UPPERCASE_CHARS));
+        return (password.length() > LocApplication.MIN_PASSWORD_LENGTH) && (password.matches(LocApplication.MATCH_LOWERCASE_CHARS) &&
+                (password.matches(LocApplication.MATCH_NUMBERS)) && password.matches(LocApplication.MATCH_UPPERCASE_CHARS));
     }
 
     /**

@@ -9,10 +9,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LocApplication extends Application {
-    public static final int MIN_WORD_LENGTH = 3;
+    
     public static final String MATCH_LOWERCASE_CHARS = ".*[a-z].*";
     public static final String MATCH_UPPERCASE_CHARS = ".*[A-Z].*";
     public static final String MATCH_NUMBERS = ".*[0-9].*";
+    public static final int MIN_WORD_LENGTH = 3;
+    public static final int MIN_PASSWORD_LENGTH = 4;
 
     public static FirebaseAuth fAuth;
     public static FirebaseUser fCurrentUser;

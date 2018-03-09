@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity
         headerView = navigationView.getHeaderView(0);
         userNameTextView = headerView.findViewById(R.id.header_user_name);
         userEmailTextView = headerView.findViewById(R.id.header_user_email);
-        userNameTextView.setText(LocApplication.fCurrentUser.getDisplayName());
-        userEmailTextView.setText(LocApplication.fCurrentUser.getEmail());
+        if (LocApplication.fCurrentUser != null) {
+            userNameTextView.setText(LocApplication.fCurrentUser.getDisplayName());
+            userEmailTextView.setText(LocApplication.fCurrentUser.getEmail());
+        }
     }
 
     @Override

@@ -3,9 +3,7 @@ package com.appdesigndm.loc2loc.Login;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -13,7 +11,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -36,8 +33,9 @@ import android.widget.Toast;
 
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
+import com.appdesigndm.loc2loc.PermissionUtils;
 import com.appdesigndm.loc2loc.R;
-import com.appdesigndm.loc2loc.User;
+import com.appdesigndm.loc2loc.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -55,16 +53,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 public class RegisterFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    private Context mContext;
 
     // UI references.
     @BindView(R.id.register_user_name)
@@ -108,33 +97,11 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
+        if (!PermissionUtils.mayRequestContacts(getActivity(), mEmailView)) {
             return;
         }
 
         getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (getContext().checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
     }
 
     /**
@@ -143,10 +110,8 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
+        if (PermissionUtils.isPermissionGranted(requestCode, permissions, grantResults)) {
+            populateAutoComplete();
         }
     }
 
@@ -243,7 +208,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
                         LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
                         // Update DDBB
                         DatabaseReference dbRef = LocApplication.fDatabase.getReference();
-                        User user = new User(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
+                        UserModel user = new UserModel(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
                         dbRef.child(LocApplication.USERS).child(user.getId()).setValue(user);
                         showProgress(false);
                         openMainActivity();
@@ -289,7 +254,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     private boolean isPasswordValid(String password) {
-        return (password.length() > LocApplication.MIN_WORD_LENGTH) && (password.matches(LocApplication.MATCH_LOWERCASE_CHARS) &&
+        return (password.length() > LocApplication.MIN_PASSWORD_LENGTH) && (password.matches(LocApplication.MATCH_LOWERCASE_CHARS) &&
                 (password.matches(LocApplication.MATCH_NUMBERS)) && password.matches(LocApplication.MATCH_UPPERCASE_CHARS));
     }
 

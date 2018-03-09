@@ -50,7 +50,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/splash_theme" />
-        <activity android:name=".Login.AccesActivity"></activity>
+        <activity android:name=".Login.AccesActivity"/>
     </application>
 
 </manifest>

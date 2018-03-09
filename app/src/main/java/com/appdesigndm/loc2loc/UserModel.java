@@ -4,22 +4,22 @@ package com.appdesigndm.loc2loc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
+public class UserModel implements Parcelable {
 
     private String id;
     private String name;
     private String email;
 
-    public User() {
+    public UserModel() {
     }
 
-    public User(String name, String email, String id) {
+    public UserModel(String name, String email, String id) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    public User(Parcel in) {
+    public UserModel(Parcel in) {
         readFromParcel(in);
     }
 
@@ -67,7 +67,7 @@ public class User implements Parcelable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserModel{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
@@ -79,21 +79,21 @@ public class User implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserModel user = (UserModel) o;
 
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         return email != null ? email.equals(user.email) : user.email == null;
     }
 
-    public static final Parcelable.Creator<User> CREATOR
-            = new Parcelable.Creator<User>() {
-        public User createFromParcel(Parcel in) {
-            return new User(in);
+    public static final Parcelable.Creator<UserModel> CREATOR
+            = new Parcelable.Creator<UserModel>() {
+        public UserModel createFromParcel(Parcel in) {
+            return new UserModel(in);
         }
 
-        public User[] newArray(int size) {
-            return new User[size];
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
         }
     };
 
