@@ -12,7 +12,7 @@
     <string name="error_invalid_password">Format de password incorrecte</string>
     <string name="error_incorrect_password">Password incorrecte</string>
     <string name="error_field_required">Camp requerit</string>
-    <string name="permission_rationale">"Els permisos per accedir als Contactes són necessaris
+    <string name="contact_permission_rationale">"Els permisos per accedir als Contactes són necessaris
         per permetre l'autocompletat del email."</string>
     <string name="error_user_does_not_exists">L\'usuari no existeix</string>
     <string name="error_invalid_user_password">Password incorrecte</string>
@@ -43,5 +43,7 @@
     <string name="action_settings">Opcions</string>
     <string name="session">Sessió</string>
     <string name="logout">Log out</string>
+    <string name="location_permission_rationale">"Para poder accedir, consultar i compartir ubicacions entre els teus contactes és
+        necessari autoritzar l\'accès a la teva ubicació."</string>
 
 </resources>

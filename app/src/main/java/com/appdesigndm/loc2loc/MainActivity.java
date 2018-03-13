@@ -2,6 +2,7 @@ package com.appdesigndm.loc2loc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
 
         init();
+        PermissionUtils.mayRequestLocation(this, getCurrentFocus());
 
     }
 
@@ -66,6 +68,23 @@ public class MainActivity extends AppCompatActivity
             userNameTextView.setText(LocApplication.fCurrentUser.getDisplayName());
             userEmailTextView.setText(LocApplication.fCurrentUser.getEmail());
         }
+    }
+
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (!PermissionUtils.isPermissionGranted(requestCode, permissions, grantResults)) {
+            openAccesActivity();
+        }
+    }
+
+    private void openAccesActivity() {
+        Intent intent = new Intent(this, AccesActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -105,7 +124,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
-            case R.id.nav_camera:
+            case R.id.nav_profile:
                 // Handle the camera action
                 break;
             case R.id.nav_gallery:

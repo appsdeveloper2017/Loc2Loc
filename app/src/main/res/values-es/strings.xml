@@ -12,7 +12,7 @@
     <string name="error_invalid_password">Formato de password incorrecto</string>
     <string name="error_incorrect_password">Password incorrecto</string>
     <string name="error_field_required">Campo requerido</string>
-    <string name="permission_rationale">"Los permisos para acceder a los Contactos son necesarios
+    <string name="contact_permission_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
     <string name="error_user_does_not_exists">El usuario no existe</string>
     <string name="error_invalid_user_password">Password incorrecto</string>
@@ -43,5 +43,7 @@
     <string name="action_settings">Opciones</string>
     <string name="session">Sesión</string>
     <string name="logout">Log out</string>
+    <string name="location_permission_rationale">"Para poder acceder, consultar y compartir ubicaciones entre tus contactos es
+        necesario autorizar el acceso a tu ubicación."</string>
 
 </resources>
