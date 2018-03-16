@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow_white);
-        actionBar.setTitle(R.string.toolbar_title_profile_fragment);
+        setActionBarTitle(getResources().getString(R.string.toolbar_title_profile_fragment));
 
         getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new ProfileFragment()).commit();
     }
@@ -43,5 +43,9 @@ public class SettingsActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }
