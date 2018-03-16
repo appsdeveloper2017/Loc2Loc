@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.appdesigndm.loc2loc.Login.AccesActivity;
+import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                // Handle the camera action
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
             case R.id.nav_gallery:
 

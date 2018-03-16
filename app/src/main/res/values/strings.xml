@@ -3,7 +3,7 @@
     <string name="subtitle">Localiza a los tuyos!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">nombre de usuario o email</string>
+    <string name="prompt_email">email</string>
     <string name="prompt_password">password</string>
     <string name="action_sign_in">Entra</string>
     <string name="action_register">Regístrate</string>
@@ -44,5 +44,13 @@
     <string name="session">Sesión</string>
     <string name="location_permission_rationale">"Para poder acceder, consultar y compartir ubicaciones entre tus contactos es
         necesario autorizar el acceso a tu ubicación."</string>
+
+    <!-- Menus -->
+    <string name="logout">Log out</string>
+    <string name="perfil">Perfil</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Profile fragment -->
+    <string name="toolbar_title_profile_fragment">Editar perfil</string>
 
 </resources>

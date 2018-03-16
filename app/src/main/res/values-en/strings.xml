@@ -3,7 +3,7 @@
     <string name="subtitle">Locate yours!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">user name or email</string>
+    <string name="prompt_email">email</string>
     <string name="prompt_password">password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
@@ -45,5 +45,8 @@
     <string name="logout">Log out</string>
     <string name="location_permission_rationale">"To access, consult and share locations among your contacts you may
         authorize access to your location."</string>
+
+    <!-- Profile fragment -->
+    <string name="toolbar_title_profile_fragment">Edit profile</string>
 
 </resources>

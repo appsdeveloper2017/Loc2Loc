@@ -12,6 +12,8 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -106,6 +108,7 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
     private void openRegisterFragment() {
         getFragmentManager()
                 .beginTransaction()
+                .addToBackStack("Login")
                 .replace(R.id.acces_container, new RegisterFragment())
                 .commit();
     }
