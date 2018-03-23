@@ -12,8 +12,6 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -26,13 +24,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.Components.CustomButton;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.PermissionUtils;
@@ -64,7 +62,7 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
     EditText mPasswordView;
 
     @BindView(R.id.email_sign_in_button)
-    Button mEmailSignInButton;
+    CustomButton mEmailSignInButton;
 
     @BindView(R.id.login_form)
     ScrollView mLoginFormView;

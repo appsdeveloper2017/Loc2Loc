@@ -24,13 +24,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.Components.CustomButton;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.PermissionUtils;
@@ -57,19 +57,25 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
 
     // UI references.
     @BindView(R.id.register_user_name)
-    public EditText mUserNameView;
+    EditText mUserNameView;
+
     @BindView(R.id.register_email)
-    public AutoCompleteTextView mEmailView;
+    AutoCompleteTextView mEmailView;
+
     @BindView(R.id.register_repeat_email)
-    public AutoCompleteTextView mRepeatEmailView;
+    AutoCompleteTextView mRepeatEmailView;
+
     @BindView(R.id.register_password)
-    public EditText mPasswordView;
+    EditText mPasswordView;
+
     @BindView(R.id.register_progress)
-    public ProgressBar mProgressView;
+    ProgressBar mProgressView;
+
     @BindView(R.id.register_form)
-    public ScrollView mRegisterFormView;
+    ScrollView mRegisterFormView;
+
     @BindView(R.id.register_email_sign_in_button)
-    public Button mEmailSignInButton;
+    CustomButton mEmailSignInButton;
 
     @Nullable
     @Override

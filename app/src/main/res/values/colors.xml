@@ -2,9 +2,13 @@
 <resources>
 
     <!-- App -->
+    <color name="colorPrimaryLight">#495cc7</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDoubleDark">#212f89</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="button_text_color_light">#FFFFFFFF</color>
+    <color name="button_text_color_dark">#FF000000</color>
 
     <!-- Splash screen -->
     <color name="splash_background">#E3F2FD</color>
@@ -15,4 +19,5 @@
 
     <!-- Main screen -->
     <color name="end_color">#a2b1f1</color>
+
 </resources>

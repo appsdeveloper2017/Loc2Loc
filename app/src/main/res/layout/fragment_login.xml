@@ -63,7 +63,7 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
+            <com.appdesigndm.loc2loc.Components.CustomButton
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
