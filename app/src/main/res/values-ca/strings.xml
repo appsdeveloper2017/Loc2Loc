@@ -37,7 +37,7 @@
     <string name="error_malformed_mail">Adreça de correu mal formada</string>
 
     <!-- String related to main activity -->
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Loc 2 Loc</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Opcions</string>

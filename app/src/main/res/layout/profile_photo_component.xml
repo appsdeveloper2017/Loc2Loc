@@ -1,0 +1,29 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.appdesigndm.loc2loc.MenuOptions.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/iv_profile_photo"
+        android:layout_width="@dimen/profile_photo_size"
+        android:layout_height="@dimen/profile_photo_size"
+        android:background="@drawable/circle_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/edit_profile_photo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu_camera_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile_photo"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile_photo"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile_photo"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile_photo" />
+
+</android.support.constraint.ConstraintLayout>

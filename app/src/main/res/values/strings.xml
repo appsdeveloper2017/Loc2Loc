@@ -37,7 +37,7 @@
     <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
     <!-- String related to main activity -->
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Loc 2 Loc</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Opciones</string>
@@ -48,9 +48,10 @@
     <!-- Menus -->
     <string name="logout">Log out</string>
     <string name="perfil">Perfil</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Configuración</string>
 
     <!-- Profile fragment -->
     <string name="toolbar_title_profile_fragment">Editar perfil</string>
+    <string name="title_activity_acces">Acceso</string>
 
 </resources>

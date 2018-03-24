@@ -16,7 +16,7 @@
         para permitir el autocompletado del email."</string>
     <string name="error_user_does_not_exists">El usuario no existe</string>
     <string name="error_invalid_user_password">Password incorrecto</string>
-    <string name="error_connection">Error en la conexión: Inténtalo de nuevo más tarde</string>
+    <string name="error_connection">Error en la conexión: Pruébalo de nuevo más tarde</string>
 
     <!-- String related to register -->
     <string name="prompt_register_user_name">nombre de usuario</string>
@@ -37,16 +37,21 @@
     <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
     <!-- String related to main activity -->
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Loc 2 Loc</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Opciones</string>
     <string name="session">Sesión</string>
-    <string name="logout">Log out</string>
     <string name="location_permission_rationale">"Para poder acceder, consultar y compartir ubicaciones entre tus contactos es
         necesario autorizar el acceso a tu ubicación."</string>
 
+    <!-- Menus -->
+    <string name="logout">Log out</string>
+    <string name="perfil">Perfil</string>
+    <string name="title_activity_settings">Configuración</string>
+
     <!-- Profile fragment -->
     <string name="toolbar_title_profile_fragment">Editar perfil</string>
+    <string name="title_activity_acces">Acceso</string>
 
 </resources>
