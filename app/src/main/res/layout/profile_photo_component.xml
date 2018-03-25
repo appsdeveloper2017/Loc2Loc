@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="com.appdesigndm.loc2loc.MenuOptions.ProfileFragment">
+    tools:context="com.appdesigndm.loc2loc.MenuOptions.EditProfileFragment">
 
     <ImageView
         android:id="@+id/iv_profile_photo"

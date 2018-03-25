@@ -44,4 +44,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Edit profile screen -->
+    <style name="edit_profile_text">
+        <item name="android:textSize">@dimen/register_text_size</item>
+    </style>
+    <style name="edit_profile_text.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

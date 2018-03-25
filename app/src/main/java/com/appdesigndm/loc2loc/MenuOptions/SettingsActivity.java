@@ -10,7 +10,6 @@ import com.appdesigndm.loc2loc.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -30,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow_white);
         setActionBarTitle(getResources().getString(R.string.toolbar_title_profile_fragment));
 
-        getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new EditProfileFragment()).commit();
     }
 
     @Override
