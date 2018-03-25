@@ -16,6 +16,9 @@ public class ProfilePhotoComponent extends ConstraintLayout {
     @BindView(R.id.iv_profile_photo)
     ImageView photo;
 
+    @BindView(R.id.edit_profile_photo_image)
+    ImageView editIcon;
+
     public ProfilePhotoComponent(Context context) {
         super(context);
         init(context);
@@ -42,5 +45,11 @@ public class ProfilePhotoComponent extends ConstraintLayout {
         photo.setImageDrawable(getResources().getDrawable(imageId));
     }
 
-
+    public void setEditable(boolean editable) {
+        if (editable) {
+            editIcon.setVisibility(VISIBLE);
+        } else {
+            editIcon.setVisibility(GONE);
+        }
+    }
 }

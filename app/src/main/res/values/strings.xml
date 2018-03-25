@@ -53,5 +53,6 @@
     <!-- Profile fragment -->
     <string name="toolbar_title_profile_fragment">Editar perfil</string>
     <string name="title_activity_acces">Acceso</string>
+    <string name="name">Nombres</string>
 
 </resources>
