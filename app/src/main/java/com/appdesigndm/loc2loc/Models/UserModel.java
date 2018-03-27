@@ -1,4 +1,4 @@
-package com.appdesigndm.loc2loc;
+package com.appdesigndm.loc2loc.Models;
 
 
 import android.os.Parcel;

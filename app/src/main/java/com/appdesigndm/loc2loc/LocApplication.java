@@ -1,12 +1,11 @@
 package com.appdesigndm.loc2loc;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
+import com.appdesigndm.loc2loc.Models.ErrorModel;
 
 public class LocApplication extends Application {
     
@@ -16,12 +15,12 @@ public class LocApplication extends Application {
     public static final int MIN_WORD_LENGTH = 3;
     public static final int MIN_PASSWORD_LENGTH = 4;
 
-    public static FirebaseAuth fAuth;
-    public static FirebaseUser fCurrentUser;
-    public static FirebaseDatabase fDatabase;
+//    public static FirebaseAuth fAuth;
+//    public static FirebaseUser fCurrentUser;
+//    public static FirebaseDatabase fDatabase;
 
     // Childs nodes for database
-    public static String USERS = "Users";
+//    public static String USERS = "Users";
 
     public LocApplication() {
     }

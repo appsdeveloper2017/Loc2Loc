@@ -27,18 +27,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         init();
         animateOnCreateViews();
-        LocApplication.fAuth = FirebaseAuth.getInstance();
-        LocApplication.fDatabase = FirebaseDatabase.getInstance();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
     }
 
     private void init() {
+//        LocApplication.fDatabase = FirebaseDatabase.getInstance();
         imageSplash = (ImageView) findViewById(R.id.imagen_splash);
     }
 
@@ -68,7 +60,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                if (LocApplication.fCurrentUser != null) {
+                AuthHelper auth = new AuthHelper();
+                if (auth.getCurrentUser() != null) {
                     intent.setClass(SplashScreenActivity.this, MainActivity.class);
                 } else {
                     intent.setClass(SplashScreenActivity.this, AccesActivity.class);

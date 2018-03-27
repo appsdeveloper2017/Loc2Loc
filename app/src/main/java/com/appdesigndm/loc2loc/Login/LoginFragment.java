@@ -30,6 +30,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.AuthHelper;
 import com.appdesigndm.loc2loc.Components.CustomButton;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
@@ -141,6 +142,8 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
+//        String email = "a@a.com";
+//        String password = "Aa1234";
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
@@ -177,12 +180,12 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            LocApplication.fAuth.signInWithEmailAndPassword(email, password)
+            final AuthHelper auth = new AuthHelper();
+            auth.getAuth().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
                                 showProgress(false);
                                 openMainActivity();
                             } else {

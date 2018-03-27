@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private View headerView;
     private TextView userNameTextView;
     private TextView userEmailTextView;
+    private AuthHelper auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +63,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void init() {
+        auth = new AuthHelper();
         headerView = navigationView.getHeaderView(0);
         userNameTextView = headerView.findViewById(R.id.header_user_name);
         userEmailTextView = headerView.findViewById(R.id.header_user_email);
-        if (LocApplication.fCurrentUser != null) {
-            userNameTextView.setText(LocApplication.fCurrentUser.getDisplayName());
-            userEmailTextView.setText(LocApplication.fCurrentUser.getEmail());
+        if (auth.getCurrentUser() != null) {
+            userNameTextView.setText(auth.getCurrentUser().getDisplayName());
+            userEmailTextView.setText(auth.getCurrentUser().getEmail());
         }
     }
 
@@ -154,7 +156,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void logout() {
-        LocApplication.fAuth.signOut();
+        auth.logout();
         startActivity(new Intent(this, AccesActivity.class));
         finish();
     }
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                LocApplication.printShort(MainActivity.this, LocApplication.fCurrentUser.getDisplayName());
+                LocApplication.printShort(MainActivity.this, auth.getCurrentUser().getDisplayName());
                 return false;
             }
         });

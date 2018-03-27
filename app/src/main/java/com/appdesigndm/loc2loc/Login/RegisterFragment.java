@@ -30,12 +30,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.AuthHelper;
 import com.appdesigndm.loc2loc.Components.CustomButton;
+import com.appdesigndm.loc2loc.DBHelper;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.PermissionUtils;
 import com.appdesigndm.loc2loc.R;
-import com.appdesigndm.loc2loc.UserModel;
+import com.appdesigndm.loc2loc.Models.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -43,7 +45,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +137,11 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
         String repeatEmail = mRepeatEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
+//        final String userName = "BBBB";
+//        String email = "b@b.com";
+//        String repeatEmail = "b@b.com";
+//        String password = "Bb1234";
+
         boolean cancel = false;
         View focusView = null;
 
@@ -187,12 +193,12 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
             // Show a progress spinner, and kick off a background task to
             // perform the user register attempt.
             showProgress(true);
-            LocApplication.fAuth.createUserWithEmailAndPassword(email, password)
+            AuthHelper auth = new AuthHelper();
+            auth.getAuth().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
                                 updateAuthData(userName);
                             } else {
                                 showRegisterError(task);
@@ -205,17 +211,18 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
 
     private void updateAuthData(final String userName) {
         // Update Auth profile
+        final AuthHelper auth = new AuthHelper();
         UserProfileChangeRequest.Builder userBuilder = new UserProfileChangeRequest.Builder();
-        LocApplication.fCurrentUser.updateProfile(userBuilder.setDisplayName(userName).build())
+        auth.getCurrentUser().updateProfile(userBuilder.setDisplayName(userName).build())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // TODO: Select profile photo
-                        LocApplication.fCurrentUser = LocApplication.fAuth.getCurrentUser();
                         // Update DDBB
-                        DatabaseReference dbRef = LocApplication.fDatabase.getReference();
-                        UserModel user = new UserModel(userName, LocApplication.fCurrentUser.getEmail(), LocApplication.fCurrentUser.getUid());
-                        dbRef.child(LocApplication.USERS).child(user.getId()).setValue(user);
+                        DBHelper dbRef = new DBHelper();
+                        UserModel user = new UserModel(userName, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid());
+//                        dbRef.child(DBHelper.CHILD_USERS).child(user.getId()).setValue(user);
+                        dbRef.setValue((DBHelper.CHILD_USERS + "/" + user.getId()), user);
                         showProgress(false);
                         openMainActivity();
                     }

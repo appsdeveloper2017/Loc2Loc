@@ -45,6 +45,12 @@
     <string name="location_permission_rationale">"Para poder acceder, consultar y compartir ubicaciones entre tus contactos es
         necesario autorizar el acceso a tu ubicación."</string>
 
+    <!-- String related to error dialog -->
+    <string name="generic_error_title">Error</string>
+    <string name="generic_error_descritpion">Se ha producido un error</string>
+    <string name="generic_error_positive_button">Aceptar</string>
+    <string name="generic_error_negative">Cancelar</string>
+
     <!-- Menus -->
     <string name="logout">Log out</string>
     <string name="perfil">Perfil</string>
@@ -53,6 +59,6 @@
     <!-- Profile fragment -->
     <string name="toolbar_title_profile_fragment">Editar perfil</string>
     <string name="title_activity_acces">Acceso</string>
-    <string name="name">Nombres</string>
+    <string name="name">Nombre</string>
 
 </resources>
