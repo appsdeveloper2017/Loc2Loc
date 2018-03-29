@@ -9,9 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

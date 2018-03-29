@@ -1,6 +1,7 @@
 package com.appdesigndm.loc2loc.MenuOptions;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.appdesigndm.loc2loc.AuthHelper;
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Components.ProfilePhotoComponent;
 import com.appdesigndm.loc2loc.Components.ViewProfileComponent;
-import com.appdesigndm.loc2loc.DBHelper;
-import com.appdesigndm.loc2loc.LocApplication;
+import com.appdesigndm.loc2loc.Helpers.DBHelper;
 import com.appdesigndm.loc2loc.Models.ErrorModel;
 import com.appdesigndm.loc2loc.R;
 import com.appdesigndm.loc2loc.Models.UserModel;
@@ -64,8 +64,15 @@ public class EditProfileFragment extends Fragment {
         dbr = DBHelper.getInstance();
         showProgressBar();
         listener = getDBUserListener();
-        dbr.child(DBHelper.CHILD_USERS)
+        dbr.child(DBHelper.USERS)
                 .child(auth.getId()).addValueEventListener(listener);
+        photo.setEditable(true);
+        photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+            }
+        });
     }
 
     public ValueEventListener getDBUserListener() {
@@ -80,14 +87,16 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "Cancelled reading DB: " + databaseError.toString());
-//                ErrorModel error = new ErrorModel(getContext());
-//                error.setPositiveListener(new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                      getActivity().finish();
-//                    }
-//                }).show();
-//                hideProgressBar();
+                if (getActivity() != null) {
+                    ErrorModel error = new ErrorModel(getContext());
+                    error.setPositiveListener(new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().finish();
+                        }
+                    }).show();
+                }
+                hideProgressBar();
             }
         };
     }

@@ -1,6 +1,7 @@
 package com.appdesigndm.loc2loc.Models;
 
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,18 +10,23 @@ public class UserModel implements Parcelable {
     private String id;
     private String name;
     private String email;
+    private Uri photo;
 
     public UserModel() {
     }
 
-    public UserModel(String name, String email, String id) {
+    public UserModel(String id, String name, String email, Uri photo) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.photo = photo;
     }
 
-    public UserModel(Parcel in) {
-        readFromParcel(in);
+    protected UserModel(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        email = in.readString();
+        photo = in.readParcelable(Uri.class.getClassLoader());
     }
 
     @Override
@@ -28,17 +34,20 @@ public class UserModel implements Parcelable {
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(email);
-    }
-
-    public void readFromParcel(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        email = in.readString();
+        dest.writeParcelable(photo, flags);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,12 +66,12 @@ public class UserModel implements Parcelable {
         this.email = email;
     }
 
-    public String getId() {
-        return id;
+    public Uri getPhoto() {
+        return photo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPhoto(Uri photo) {
+        this.photo = photo;
     }
 
     @Override
@@ -71,30 +80,19 @@ public class UserModel implements Parcelable {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", photo=" + photo +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserModel user = (UserModel) o;
-
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return email != null ? email.equals(user.email) : user.email == null;
-    }
-
-    public static final Parcelable.Creator<UserModel> CREATOR
-            = new Parcelable.Creator<UserModel>() {
+    public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
+        @Override
         public UserModel createFromParcel(Parcel in) {
             return new UserModel(in);
         }
 
+        @Override
         public UserModel[] newArray(int size) {
             return new UserModel[size];
         }
     };
-
 }

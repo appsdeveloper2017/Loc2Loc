@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
 import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;

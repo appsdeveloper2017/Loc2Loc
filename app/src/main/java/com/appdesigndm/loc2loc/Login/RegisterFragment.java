@@ -30,9 +30,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appdesigndm.loc2loc.AuthHelper;
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Components.CustomButton;
-import com.appdesigndm.loc2loc.DBHelper;
+import com.appdesigndm.loc2loc.Helpers.DBHelper;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.PermissionUtils;
@@ -219,10 +219,9 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
                     public void onComplete(@NonNull Task<Void> task) {
                         // TODO: Select profile photo
                         // Update DDBB
-                        DBHelper dbRef = new DBHelper();
-                        UserModel user = new UserModel(userName, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid());
-//                        dbRef.child(DBHelper.CHILD_USERS).child(user.getId()).setValue(user);
-                        dbRef.setValue((DBHelper.CHILD_USERS + "/" + user.getId()), user);
+                        UserModel user = new UserModel(userName, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid(), null);
+                        String[] children = {DBHelper.USERS, user.getId()};
+                        DBHelper.setValue(children, user);
                         showProgress(false);
                         openMainActivity();
                     }

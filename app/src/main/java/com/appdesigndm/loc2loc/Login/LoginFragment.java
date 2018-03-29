@@ -30,7 +30,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appdesigndm.loc2loc.AuthHelper;
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Components.CustomButton;
 import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.MainActivity;
