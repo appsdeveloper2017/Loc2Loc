@@ -1,12 +1,15 @@
 package com.appdesigndm.loc2loc.Components;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appdesigndm.loc2loc.R;
 
@@ -24,17 +27,17 @@ public class EditProfileComponent extends ConstraintLayout {
     @BindView(R.id.edit_profile_component_text)
     EditText etText;
 
-    public EditProfileComponent(Context context) {
+    public EditProfileComponent(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    public EditProfileComponent(Context context, AttributeSet attrs) {
+    public EditProfileComponent(@NonNull Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public EditProfileComponent(Context context, AttributeSet attrs, int defStyleAttr) {
+    public EditProfileComponent(@NonNull Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

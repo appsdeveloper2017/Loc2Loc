@@ -13,6 +13,9 @@
     <!-- Basic colors -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    <color name="red">#a90b0b</color>
+    <color name="yellow">#ffb005</color>
+    <color name="green">#088308</color>
     <color name="soft_grey">#FFBBBBBB</color>
     <color name="medium_grey">#FF777777</color>
     <color name="dark_grey">#FF333333</color>
