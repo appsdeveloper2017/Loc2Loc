@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
+import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -65,7 +66,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 } else {
                     intent.setClass(SplashScreenActivity.this, AccesActivity.class);
                 }
-//                intent.setClass(SplashScreenActivity.this, MainActivity.class);
+                intent.setClass(SplashScreenActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 finish();
 

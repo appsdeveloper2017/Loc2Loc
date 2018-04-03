@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.appdesigndm.loc2loc.Components.CustomDialog;
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Components.ProfilePhotoComponent;
 import com.appdesigndm.loc2loc.Components.ViewProfileComponent;
@@ -45,8 +47,9 @@ public class EditProfileFragment extends Fragment {
     @BindView(R.id.edit_mail)
     ViewProfileComponent mail;
 
-    DatabaseReference dbr;
-    ValueEventListener listener;
+    private DatabaseReference dbr;
+    private ValueEventListener listener;
+    private CustomDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +57,27 @@ public class EditProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         ButterKnife.bind(this, view);
 
-        init();
+//        dialog = CustomDialog.newInstance("Un titulo",
+//                null, "Una descripción", null, "Aceptar");
+        dialog = new CustomDialog();
+//        dialog.setTitle("Un titulo")
+//                .setSeverity(CustomDialog.Severity.ERROR)
+//                .setDescription("Una descripción")
+//                .setLeftButton("Izq", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        })
+//        .setRightButton("Dcha", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+        dialog.show(getFragmentManager(), null);
+
+//        init();
         return view;
     }
 

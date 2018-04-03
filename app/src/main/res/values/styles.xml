@@ -52,4 +52,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Dialog -->
+    <style name="dialog_text" parent="texto_app">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="dialog_text.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

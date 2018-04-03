@@ -31,4 +31,7 @@
     <dimen name="profile_icons">30dp</dimen>
     <dimen name="edit_profile_component_height">80dp</dimen>
 
+    <dimen name="button_radius">5dp</dimen>
+    <dimen name="margin_button_text">2dp</dimen>
+
 </resources>

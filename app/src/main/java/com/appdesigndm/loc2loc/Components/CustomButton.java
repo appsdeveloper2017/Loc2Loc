@@ -29,5 +29,7 @@ public class CustomButton extends AppCompatButton {
     private void init() {
         setTextColor(getResources().getColor(R.color.button_text_color_light));
         setBackground(getResources().getDrawable(R.drawable.button_state_colors));
+        float pad = getResources().getDimension(R.dimen.margin_button_text);
+        setPadding((int) pad, (int) pad, (int) pad, (int) pad);
     }
 }
