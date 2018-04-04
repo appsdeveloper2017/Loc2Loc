@@ -57,27 +57,13 @@ public class EditProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         ButterKnife.bind(this, view);
 
-//        dialog = CustomDialog.newInstance("Un titulo",
-//                null, "Una descripción", null, "Aceptar");
         dialog = new CustomDialog();
-//        dialog.setTitle("Un titulo")
-//                .setSeverity(CustomDialog.Severity.ERROR)
-//                .setDescription("Una descripción")
-//                .setLeftButton("Izq", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        })
-//        .setRightButton("Dcha", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-        dialog.show(getFragmentManager(), null);
+        dialog.setTitle("Title 1")
+                .setDescription("Description 1")
+                .setRightButtonText("Right")
+                .show(getFragmentManager(), null);
 
-//        init();
+        init();
         return view;
     }
 

@@ -3,6 +3,7 @@ package com.appdesigndm.loc2loc.Components;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,13 +36,13 @@ public class CustomDialog extends DialogFragment {
     @BindView(R.id.dialog_right_button)
     CustomButton rightButton;
 
-    private String title;
-    private int icon;
-    private String description;
-    private String leftButtonText;
-    private String leftButtonListener;
-    private String rightButtonText;
-    private String rightButtonListener;
+    private String mTitle;
+    private Severity mSeverity;
+    private String mDescription;
+    private String mLeftButtonText;
+    private View.OnClickListener mLeftButtonListener;
+    private String mRightButtonText;
+    private View.OnClickListener mRightButtonListener;
 
     public enum Severity {ERROR, WARNING, INFO}
 
@@ -65,73 +66,167 @@ public class CustomDialog extends DialogFragment {
         return view;
     }
 
-    private void loadView() {
-        setCancelable(false);
-        setTitle("Un titulo");
-//        setSeverity(Severity.ERROR);
-        setDescription("Una descripcion");
-        setLeftButton("Left", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-        setRightButton("Right", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        super.show(manager, tag);
     }
 
-    public CustomDialog setTitle(String text) {
-        tvTitle.setText(text);
-        tvTitle.setVisibility(View.VISIBLE);
-        separator.setVisibility(View.VISIBLE);
+    private void loadView() {
+        setCancelable(false);
+        setupTitle(getTitle());
+        setupSeverity(getSeverity());
+        setupDescription(getDescription());
+        setupLeftButton(getLeftButtonText(), getLeftButtonListener());
+        setupRightButton(getRightButtonText(), getRightButtonListener());
+    }
+
+    private void setupTitle(String text) {
+        if (text != null) {
+            tvTitle.setText(text);
+            tvTitle.setVisibility(View.VISIBLE);
+            separator.setVisibility(View.VISIBLE);
+        } else {
+            tvDescription.setVisibility(View.GONE);
+            separator.setVisibility(View.GONE);
+        }
+    }
+
+    public void setupSeverity(Severity severity) {
+        if (severity != null) {
+            switch (severity) {
+                case ERROR:
+                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
+                    break;
+                case WARNING:
+                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
+                    break;
+                case INFO:
+                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_info));
+                    break;
+                default:
+                    break;
+            }
+            severityIcon.setVisibility(View.VISIBLE);
+        } else {
+            severityIcon.setVisibility(View.GONE);
+        }
+    }
+
+    public void setupDescription(String text) {
+        if (text != null) {
+            tvDescription.setText(text);
+            tvDescription.setVisibility(View.VISIBLE);
+        } else {
+            tvDescription.setVisibility(View.GONE);
+            separator.setVisibility(View.GONE);
+        }
+    }
+
+    public void setupLeftButton(String text, View.OnClickListener listener) {
+        if (text != null) {
+            leftButton.setText(text);
+            leftButton.setVisibility(View.VISIBLE);
+            if (listener != null) {
+                leftButton.setOnClickListener(listener);
+            } else {
+                leftButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
+            }
+        } else {
+            leftButton.setVisibility(View.GONE);
+        }
+    }
+
+    public void setupRightButton(String text, View.OnClickListener listener) {
+        if (text != null) {
+            rightButton.setText(text);
+            rightButton.setVisibility(View.VISIBLE);
+            if (listener != null) {
+                rightButton.setOnClickListener(listener);
+            } else {
+                rightButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
+            }
+        } else {
+            rightButton.setVisibility(View.GONE);
+        }
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public CustomDialog setTitle(String title) {
+        mTitle = title;
 
         return this;
+    }
+
+    public Severity getSeverity() {
+        return mSeverity;
     }
 
     public CustomDialog setSeverity(Severity severity) {
-        switch (severity) {
-            case ERROR:
-                severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
-                break;
-            case WARNING:
-                severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
-                break;
-            case INFO:
-                severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_info));
-                break;
-            default:
-                break;
-        }
-        severityIcon.setVisibility(View.VISIBLE);
+        mSeverity = severity;
 
         return this;
     }
 
-    public CustomDialog setDescription(String text) {
-        tvDescription.setText(text);
-        tvDescription.setVisibility(View.VISIBLE);
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public CustomDialog setDescription(String description) {
+        mDescription = description;
 
         return this;
     }
 
-    public CustomDialog setLeftButton(String text, View.OnClickListener listener) {
-        leftButton.setText(text);
-        leftButton.setVisibility(View.VISIBLE);
-        leftButton.setOnClickListener(listener);
+    public String getLeftButtonText() {
+        return mLeftButtonText;
+    }
+
+    public CustomDialog setLeftButtonText(String leftButtonText) {
+        mLeftButtonText = leftButtonText;
 
         return this;
     }
 
-    public CustomDialog setRightButton(String text, View.OnClickListener listener) {
-        rightButton.setText(text);
-        rightButton.setVisibility(View.VISIBLE);
-        rightButton.setOnClickListener(listener);
+    public View.OnClickListener getLeftButtonListener() {
+        return mLeftButtonListener;
+    }
+
+    public CustomDialog setLeftButtonListener(View.OnClickListener leftButtonListener) {
+        mLeftButtonListener = leftButtonListener;
 
         return this;
     }
 
+    public String getRightButtonText() {
+        return mRightButtonText;
+    }
+
+    public CustomDialog setRightButtonText(String rightButtonText) {
+        mRightButtonText = rightButtonText;
+
+        return this;
+    }
+
+    public View.OnClickListener getRightButtonListener() {
+        return mRightButtonListener;
+    }
+
+    public CustomDialog setRightButtonListener(View.OnClickListener rightButtonListener) {
+        mRightButtonListener = rightButtonListener;
+
+        return this;
+    }
 }
