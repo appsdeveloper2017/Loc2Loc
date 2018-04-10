@@ -10,7 +10,7 @@
         android:id="@+id/iv_profile_photo"
         android:layout_width="@dimen/profile_photo_size"
         android:layout_height="@dimen/profile_photo_size"
-        android:background="@drawable/circle_image"
+        android:background="@drawable/circle_image_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

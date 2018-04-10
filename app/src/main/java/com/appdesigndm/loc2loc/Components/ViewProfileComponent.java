@@ -23,6 +23,9 @@ public class ViewProfileComponent extends ConstraintLayout {
     @BindView(R.id.view_profile_component_text)
     TextView etText;
 
+    @BindView(R.id.image_edit_action)
+    ImageView ivActionIcon;
+
     public ViewProfileComponent(Context context) {
         super(context);
         init(context);
@@ -55,5 +58,9 @@ public class ViewProfileComponent extends ConstraintLayout {
 
     public void setText(String text) {
         this.etText.setText(text);
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        ivActionIcon.setOnClickListener(onClickListener);
     }
 }

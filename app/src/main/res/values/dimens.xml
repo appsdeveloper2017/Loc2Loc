@@ -33,5 +33,7 @@
 
     <dimen name="button_radius">5dp</dimen>
     <dimen name="margin_button_text">2dp</dimen>
+    <dimen name="nav_header_profile_image_dimension">70dp</dimen>
+    <dimen name="header_profile_letter_size">50sp</dimen>
 
 </resources>

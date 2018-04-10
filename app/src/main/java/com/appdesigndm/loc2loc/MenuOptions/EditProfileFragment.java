@@ -5,21 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.appdesigndm.loc2loc.Components.CustomDialog;
-import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Components.ProfilePhotoComponent;
 import com.appdesigndm.loc2loc.Components.ViewProfileComponent;
+import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Helpers.DBHelper;
 import com.appdesigndm.loc2loc.Models.ErrorModel;
-import com.appdesigndm.loc2loc.R;
 import com.appdesigndm.loc2loc.Models.UserModel;
+import com.appdesigndm.loc2loc.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,27 +39,26 @@ public class EditProfileFragment extends Fragment {
     @BindView(R.id.profile_photo)
     ProfilePhotoComponent photo;
 
+    @BindView(R.id.view_name)
+    ViewProfileComponent viewName;
+
+    @BindView(R.id.view_mail)
+    ViewProfileComponent viewMail;
+
     @BindView(R.id.edit_name)
-    ViewProfileComponent name;
+    ViewProfileComponent editName;
 
     @BindView(R.id.edit_mail)
-    ViewProfileComponent mail;
+    ViewProfileComponent editMail;
 
     private DatabaseReference dbr;
     private ValueEventListener listener;
-    private CustomDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         ButterKnife.bind(this, view);
-
-        dialog = new CustomDialog();
-        dialog.setTitle("Title 1")
-                .setDescription("Description 1")
-                .setRightButtonText("Right")
-                .show(getFragmentManager(), null);
 
         init();
         return view;
@@ -70,18 +67,20 @@ public class EditProfileFragment extends Fragment {
     private void init() {
         ((SettingsActivity) getActivity()).setActionBarTitle(getResources().getString(R.string.toolbar_title_profile_fragment));
         AuthHelper auth = new AuthHelper();
-        dbr = DBHelper.getInstance();
-        showProgressBar();
-        listener = getDBUserListener();
-        dbr.child(DBHelper.USERS)
-                .child(auth.getId()).addValueEventListener(listener);
-        photo.setEditable(true);
-        photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-            }
-        });
+        if (auth.getCurrentUser() != null) {
+            dbr = DBHelper.getInstance();
+            showProgressBar();
+            listener = getDBUserListener();
+            dbr.child(DBHelper.USERS)
+                    .child(auth.getId()).addValueEventListener(listener);
+            photo.setEditable(true);
+            photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                }
+            });
+        }
     }
 
     public ValueEventListener getDBUserListener() {
@@ -124,12 +123,26 @@ public class EditProfileFragment extends Fragment {
     private void loadData(UserModel user) {
         photo.setPhoto(R.drawable.chincheta);
 
-        name.setIcon(R.drawable.ic_menu_profile);
-        name.setTitle(getString(R.string.name));
-        name.setText(user.getName());
+        viewName.setIcon(R.drawable.ic_menu_profile);
+        viewName.setTitle(getString(R.string.name));
+        viewName.setText(user.getName());
+        viewName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewName.setVisibility(View.GONE);
+                editName.setVisibility(View.VISIBLE);
+            }
+        });
 
-        mail.setIcon(R.drawable.ic_menu_mail);
-        mail.setTitle(getString(R.string.prompt_email));
-        mail.setText(user.getEmail());
+        viewMail.setIcon(R.drawable.ic_menu_mail);
+        viewMail.setTitle(getString(R.string.prompt_email));
+        viewMail.setText(user.getEmail());
+        viewMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewMail.setVisibility(View.GONE);
+                editMail.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }

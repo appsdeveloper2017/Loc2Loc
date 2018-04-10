@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private View headerView;
+    private ImageView userPhotoImageView;
+    private TextView userPhotoInitialLetter;
     private TextView userNameTextView;
     private TextView userEmailTextView;
     private AuthHelper auth;
@@ -66,12 +69,33 @@ public class MainActivity extends AppCompatActivity
     private void init() {
         auth = new AuthHelper();
         headerView = navigationView.getHeaderView(0);
-        userNameTextView = headerView.findViewById(R.id.header_user_name);
-        userEmailTextView = headerView.findViewById(R.id.header_user_email);
+
+        userPhotoImageView = (ImageView) headerView.findViewById(R.id.header_image_view);
+        userPhotoInitialLetter = (TextView) headerView.findViewById(R.id.header_initial_letter);
+        userNameTextView = (TextView) headerView.findViewById(R.id.header_user_name);
+        userEmailTextView = (TextView) headerView.findViewById(R.id.header_user_email);
         if (auth.getCurrentUser() != null) {
+            setImage();
             userNameTextView.setText(auth.getCurrentUser().getDisplayName());
             userEmailTextView.setText(auth.getCurrentUser().getEmail());
         }
+    }
+
+    private void setImage() {
+        if (auth.getPhoto() != null) {
+//            userPhotoImageView.setBackground(getResources().getDrawable(R.drawable.circle_image_empty));
+            userPhotoImageView.setImageURI(auth.getPhoto());
+        } else {
+            setInitialLetterToImage();
+        }
+    }
+
+    private void setInitialLetterToImage() {
+        String letter = auth.getName().substring(0, 1).toUpperCase();
+//        letter = letter.substring(0, 1).toUpperCase();
+//        letter = letter.toUpperCase();
+//        userPhotoImageView.setBackground(getResources().getDrawable(R.drawable.circle_image_filled));
+        userPhotoInitialLetter.setText(letter);
     }
 
     /**
@@ -175,10 +199,11 @@ public class MainActivity extends AppCompatActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(41.387145, 2.710058);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker in Barcelona and move the camera
+//
+        LatLng position = new LatLng(41.382470, 2.177237);
+        mMap.addMarker(new MarkerOptions().position(position));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override

@@ -4,14 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
+import com.appdesigndm.loc2loc.Login.LoginFragment;
 import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -26,7 +34,25 @@ public class SplashScreenActivity extends AppCompatActivity {
         mContext = this;
 
         init();
-        animateOnCreateViews();
+        final AuthHelper auth = new AuthHelper();
+        abrirActivityProvisional(auth);
+//        animateOnCreateViews();
+    }
+
+    private void abrirActivityProvisional(AuthHelper auth) {
+        auth.getAuth()
+                .signInWithEmailAndPassword("a@a.com", "Aa1234")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(mContext, MainActivity.class));
+                            finish();
+                        } else {
+                            LocApplication.printShort(mContext, "Error de login");
+                        }
+                    }
+                });
     }
 
     private void init() {
@@ -66,7 +92,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 } else {
                     intent.setClass(SplashScreenActivity.this, AccesActivity.class);
                 }
-                intent.setClass(SplashScreenActivity.this, SettingsActivity.class);
+//                intent.setClass(SplashScreenActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 finish();
 

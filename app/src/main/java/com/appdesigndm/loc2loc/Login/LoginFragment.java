@@ -85,8 +85,17 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
         return v;
     }
 
+    @OnEditorAction(R.id.email)
+    public boolean onEmailAction(TextView textView, int id, KeyEvent keyEvent) {
+        if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+            mPasswordView.requestFocus();
+            return true;
+        }
+        return false;
+    }
+
     @OnEditorAction(R.id.password)
-    public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+    public boolean onPasswordAction(TextView textView, int id, KeyEvent keyEvent) {
         if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
             attemptLogin();
             return true;
