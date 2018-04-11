@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +22,10 @@ public class ViewProfileComponent extends ConstraintLayout {
     ImageView ivIcon;
 
     @BindView(R.id.view_profile_component_text)
-    TextView etText;
+    TextView tvText;
+
+    @BindView(R.id.edit_profile_component_text)
+    EditText etText;
 
     @BindView(R.id.image_edit_action)
     ImageView ivActionIcon;
@@ -57,7 +61,7 @@ public class ViewProfileComponent extends ConstraintLayout {
     }
 
     public void setText(String text) {
-        this.etText.setText(text);
+        this.tvText.setText(text);
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {

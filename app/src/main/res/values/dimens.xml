@@ -27,7 +27,7 @@
 
     <!-- Profile screen -->
     <dimen name="profile_photo_size">100dp</dimen>
-    <dimen name="profile_image_margin">50dp</dimen>
+    <dimen name="profile_image_margin">20dp</dimen>
     <dimen name="profile_icons">30dp</dimen>
     <dimen name="edit_profile_component_height">80dp</dimen>
 

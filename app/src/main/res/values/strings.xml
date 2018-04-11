@@ -58,7 +58,11 @@
 
     <!-- Profile fragment -->
     <string name="toolbar_title_profile_fragment">Editar perfil</string>
+    <string name="edit_name">Editar nombre</string>
+    <string name="edit_mail">Editar email</string>
+    <string name="edit_password">Cambiar contraseña</string>
     <string name="title_activity_acces">Acceso</string>
     <string name="name">Nombre</string>
+    <string name="accept">Aceptar</string>
 
 </resources>

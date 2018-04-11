@@ -1,13 +1,18 @@
 package com.appdesigndm.loc2loc.Components;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,11 +29,8 @@ public class CustomDialog extends DialogFragment {
     @BindView(R.id.dialog_title_separator)
     ImageView separator;
 
-    @BindView(R.id.dialog_severity_icon)
-    ImageView severityIcon;
-
     @BindView(R.id.dialog_description)
-    TextView tvDescription;
+    EditText etDescription;
 
     @BindView(R.id.dialog_left_button)
     CustomButton leftButton;
@@ -36,18 +38,16 @@ public class CustomDialog extends DialogFragment {
     @BindView(R.id.dialog_right_button)
     CustomButton rightButton;
 
+    private View view;
     private String mTitle;
-    private Severity mSeverity;
     private String mDescription;
     private String mLeftButtonText;
     private View.OnClickListener mLeftButtonListener;
     private String mRightButtonText;
     private View.OnClickListener mRightButtonListener;
 
-    public enum Severity {ERROR, WARNING, INFO}
-
     public CustomDialog() {
-
+        // Required empty constructor
     }
 
     @Override
@@ -58,12 +58,21 @@ public class CustomDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.custom_dialog, container);
+        view = inflater.inflate(R.layout.custom_dialog, container);
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE); // Delete native title from dialog
 
         ButterKnife.bind(this, view);
-        loadView();
+//        loadView();
         return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadView();
+        // The setup view must be in onResume method
+//        setupView();
     }
 
     @Override
@@ -72,12 +81,20 @@ public class CustomDialog extends DialogFragment {
     }
 
     private void loadView() {
-        setCancelable(false);
+        setupView();
         setupTitle(getTitle());
-        setupSeverity(getSeverity());
         setupDescription(getDescription());
         setupLeftButton(getLeftButtonText(), getLeftButtonListener());
         setupRightButton(getRightButtonText(), getRightButtonListener());
+    }
+
+    // The setup view must be in onResume method
+    private void setupView() {
+        Window window = getDialog().getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.width = getScreenWidth();
+        window.setAttributes(params);
+        window.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_rounded_white_filled));
     }
 
     private void setupTitle(String text) {
@@ -86,40 +103,21 @@ public class CustomDialog extends DialogFragment {
             tvTitle.setVisibility(View.VISIBLE);
             separator.setVisibility(View.VISIBLE);
         } else {
-            tvDescription.setVisibility(View.GONE);
+            etDescription.setVisibility(View.GONE);
             separator.setVisibility(View.GONE);
-        }
-    }
-
-    public void setupSeverity(Severity severity) {
-        if (severity != null) {
-            switch (severity) {
-                case ERROR:
-                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
-                    break;
-                case WARNING:
-                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
-                    break;
-                case INFO:
-                    severityIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_info));
-                    break;
-                default:
-                    break;
-            }
-            severityIcon.setVisibility(View.VISIBLE);
-        } else {
-            severityIcon.setVisibility(View.GONE);
         }
     }
 
     public void setupDescription(String text) {
         if (text != null) {
-            tvDescription.setText(text);
-            tvDescription.setVisibility(View.VISIBLE);
+            etDescription.setText(text);
+            etDescription.setVisibility(View.VISIBLE);
         } else {
-            tvDescription.setVisibility(View.GONE);
+            etDescription.setVisibility(View.GONE);
             separator.setVisibility(View.GONE);
         }
+        etDescription.requestFocus();
+        etDescription.setSelection(text.length());
     }
 
     public void setupLeftButton(String text, View.OnClickListener listener) {
@@ -170,18 +168,12 @@ public class CustomDialog extends DialogFragment {
         return this;
     }
 
-    public Severity getSeverity() {
-        return mSeverity;
-    }
-
-    public CustomDialog setSeverity(Severity severity) {
-        mSeverity = severity;
-
-        return this;
-    }
-
     public String getDescription() {
         return mDescription;
+    }
+
+    public String getDescriptionContent() {
+        return etDescription.getText().toString();
     }
 
     public CustomDialog setDescription(String description) {
@@ -228,5 +220,21 @@ public class CustomDialog extends DialogFragment {
         mRightButtonListener = rightButtonListener;
 
         return this;
+    }
+
+    public int getScreenWidth() {
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = ((size.x / 4) * 3);
+        return width;
+    }
+
+    public int getScreenHeight() {
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int height = (size.y / 2);
+        return height;
     }
 }

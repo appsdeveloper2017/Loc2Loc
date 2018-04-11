@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.Components.CustomDialog;
 import com.appdesigndm.loc2loc.Components.ProfilePhotoComponent;
 import com.appdesigndm.loc2loc.Components.ViewProfileComponent;
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
@@ -45,14 +47,9 @@ public class EditProfileFragment extends Fragment {
     @BindView(R.id.view_mail)
     ViewProfileComponent viewMail;
 
-    @BindView(R.id.edit_name)
-    ViewProfileComponent editName;
-
-    @BindView(R.id.edit_mail)
-    ViewProfileComponent editMail;
-
     private DatabaseReference dbr;
     private ValueEventListener listener;
+    private UserModel user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,8 +84,8 @@ public class EditProfileFragment extends Fragment {
         return new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserModel user = dataSnapshot.getValue(UserModel.class);
-                loadData(user);
+                user = dataSnapshot.getValue(UserModel.class);
+                loadData();
                 hideProgressBar();
             }
 
@@ -120,7 +117,7 @@ public class EditProfileFragment extends Fragment {
         dbr.removeEventListener(listener);
     }
 
-    private void loadData(UserModel user) {
+    private void loadData() {
         photo.setPhoto(R.drawable.chincheta);
 
         viewName.setIcon(R.drawable.ic_menu_profile);
@@ -129,8 +126,7 @@ public class EditProfileFragment extends Fragment {
         viewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewName.setVisibility(View.GONE);
-                editName.setVisibility(View.VISIBLE);
+                launchEditName();
             }
         });
 
@@ -140,9 +136,44 @@ public class EditProfileFragment extends Fragment {
         viewMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewMail.setVisibility(View.GONE);
-                editMail.setVisibility(View.VISIBLE);
+                launchEditMail();
             }
         });
     }
+
+    private void launchEditName() {
+        final CustomDialog dialog = new CustomDialog();
+        dialog.setTitle(getString(R.string.edit_name))
+                .setDescription(user.getName())
+                .setRightButtonText(getString(R.string.accept))
+                .setRightButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        user.setName(dialog.getDescriptionContent());
+                        guardarDatos();
+                        dialog.dismiss();
+                    }
+                }).show(getFragmentManager(), "CustomDialog");
+    }
+
+    private void launchEditMail() {
+        final CustomDialog dialog = new CustomDialog();
+        dialog.setTitle(getString(R.string.edit_mail))
+                .setDescription(user.getEmail())
+                .setRightButtonText(getString(R.string.accept))
+                .setRightButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        user.setEmail(dialog.getDescriptionContent());
+                        guardarDatos();
+                        dialog.dismiss();
+                    }
+                }).show(getFragmentManager(), "CustomDialog");
+    }
+
+    private void guardarDatos() {
+        Toast.makeText(getContext(), user.toString(), Toast.LENGTH_SHORT).show();
+        loadData();
+    }
+
 }
