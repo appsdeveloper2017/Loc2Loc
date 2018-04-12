@@ -164,13 +164,13 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!AuthHelper.isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         } else {
             // Check for a valid password, if the user entered one.
-            if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            if (!TextUtils.isEmpty(password) && !AuthHelper.isPasswordValid(password)) {
                 mPasswordView.setError(getString(R.string.error_invalid_password));
                 focusView = mPasswordView;
                 cancel = true;
@@ -189,7 +189,7 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            final AuthHelper auth = new AuthHelper();
+            final AuthHelper auth = new AuthHelper(getContext());
             auth.getAuth().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -223,15 +223,6 @@ public class LoginFragment extends Fragment implements LoaderManager.LoaderCallb
         }
         t.setGravity(Gravity.CENTER, 0, 0);
         t.show();
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@") && email.contains(".");
-    }
-
-    private boolean isPasswordValid(String password) {
-        return (password.length() > LocApplication.MIN_PASSWORD_LENGTH) && (password.matches(LocApplication.MATCH_LOWERCASE_CHARS) &&
-                (password.matches(LocApplication.MATCH_NUMBERS)) && password.matches(LocApplication.MATCH_UPPERCASE_CHARS));
     }
 
     /**

@@ -30,4 +30,7 @@
     <!-- Main screen -->
     <color name="end_color">#a2b1f1</color>
 
+    <!-- Dialgo fragment -->
+    <color name="separator_grey">@color/medium_grey</color>
+
 </resources>

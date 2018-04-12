@@ -15,13 +15,6 @@ public class LocApplication extends Application {
     public static final int MIN_WORD_LENGTH = 3;
     public static final int MIN_PASSWORD_LENGTH = 4;
 
-//    public static FirebaseAuth fAuth;
-//    public static FirebaseUser fCurrentUser;
-//    public static FirebaseDatabase fDatabase;
-
-    // Childs nodes for database
-//    public static String USERS = "Users";
-
     public LocApplication() {
     }
 
@@ -29,8 +22,17 @@ public class LocApplication extends Application {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
+    public static void printShort(Context context, int textId) {
+        String text = context.getResources().getString(textId);
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
+
     public static void printLong(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
 
+    public static void printLong(Context context, int textId) {
+        String text = context.getResources().getString(textId);
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
 }

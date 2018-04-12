@@ -6,18 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
-import com.appdesigndm.loc2loc.Login.LoginFragment;
 import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
@@ -34,7 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         mContext = this;
 
         init();
-        final AuthHelper auth = new AuthHelper();
+        final AuthHelper auth = new AuthHelper(getApplicationContext());
         abrirActivityProvisional(auth);
 //        animateOnCreateViews();
     }

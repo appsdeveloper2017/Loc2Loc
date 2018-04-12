@@ -67,17 +67,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void init() {
-        auth = new AuthHelper();
+        auth = new AuthHelper(getApplicationContext());
         headerView = navigationView.getHeaderView(0);
 
         userPhotoImageView = (ImageView) headerView.findViewById(R.id.header_image_view);
         userPhotoInitialLetter = (TextView) headerView.findViewById(R.id.header_initial_letter);
         userNameTextView = (TextView) headerView.findViewById(R.id.header_user_name);
         userEmailTextView = (TextView) headerView.findViewById(R.id.header_user_email);
-        if (auth.getCurrentUser() != null) {
+        if (auth.getAuthenticatedUser() != null) {
             setImage();
-            userNameTextView.setText(auth.getCurrentUser().getDisplayName());
-            userEmailTextView.setText(auth.getCurrentUser().getEmail());
+            userNameTextView.setText(auth.getAuthenticatedUser().getDisplayName());
+            userEmailTextView.setText(auth.getAuthenticatedUser().getEmail());
         }
     }
 
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                LocApplication.printShort(MainActivity.this, auth.getCurrentUser().getDisplayName());
+                LocApplication.printShort(MainActivity.this, auth.getAuthenticatedUser().getDisplayName());
                 return false;
             }
         });

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,5 +67,9 @@ public class ViewProfileComponent extends ConstraintLayout {
 
     public void setOnClickListener(OnClickListener onClickListener) {
         ivActionIcon.setOnClickListener(onClickListener);
+    }
+
+    public void ofuscateText(){
+        tvText.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
     }
 }

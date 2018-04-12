@@ -150,7 +150,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
             mUserNameView.setError(getString(R.string.error_field_register_required));
             focusView = mUserNameView;
             cancel = true;
-        } else if (!isUserNameValid(userName)) {
+        } else if (!AuthHelper.isUserNameValid(userName)) {
             mUserNameView.setError(getString(R.string.error_invalid_register_user_name));
             focusView = mUserNameView;
             cancel = true;
@@ -160,7 +160,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
                 mEmailView.setError(getString(R.string.error_field_register_required));
                 focusView = mEmailView;
                 cancel = true;
-            } else if (!isEmailValid(email)) {
+            } else if (!AuthHelper.isEmailValid(email)) {
                 mEmailView.setError(getString(R.string.error_invalid_register_email));
                 focusView = mEmailView;
                 cancel = true;
@@ -172,7 +172,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
                     cancel = true;
                 } else {
                     // Check for a valid password, if the user entered one.
-                    if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+                    if (!TextUtils.isEmpty(password) && !AuthHelper.isPasswordValid(password)) {
                         mPasswordView.setError(getString(R.string.error_invalid_register_password));
                         focusView = mPasswordView;
                         cancel = true;
@@ -193,7 +193,7 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
             // Show a progress spinner, and kick off a background task to
             // perform the user register attempt.
             showProgress(true);
-            AuthHelper auth = new AuthHelper();
+            AuthHelper auth = new AuthHelper(getContext());
             auth.getAuth().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -211,15 +211,15 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
 
     private void updateAuthData(final String userName) {
         // Update Auth profile
-        final AuthHelper auth = new AuthHelper();
+        final AuthHelper auth = new AuthHelper(getContext());
         UserProfileChangeRequest.Builder userBuilder = new UserProfileChangeRequest.Builder();
-        auth.getCurrentUser().updateProfile(userBuilder.setDisplayName(userName).build())
+        auth.getAuthenticatedUser().updateProfile(userBuilder.setDisplayName(userName).build())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         // TODO: Select profile photo
                         // Update DDBB
-                        UserModel user = new UserModel(userName, auth.getCurrentUser().getEmail(), auth.getCurrentUser().getUid(), null);
+                        UserModel user = new UserModel(userName, auth.getAuthenticatedUser().getEmail(), auth.getAuthenticatedUser().getUid(), null);
                         String[] children = {DBHelper.USERS, user.getId()};
                         DBHelper.setValue(children, user);
                         showProgress(false);
@@ -255,19 +255,6 @@ public class RegisterFragment extends Fragment implements LoaderManager.LoaderCa
         mEmailView.setError(null);
         mRepeatEmailView.setError(null);
         mPasswordView.setError(null);
-    }
-
-    private boolean isUserNameValid(String userName) {
-        return (userName.length() > LocApplication.MIN_WORD_LENGTH);
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@") && email.contains(".");
-    }
-
-    private boolean isPasswordValid(String password) {
-        return (password.length() > LocApplication.MIN_PASSWORD_LENGTH) && (password.matches(LocApplication.MATCH_LOWERCASE_CHARS) &&
-                (password.matches(LocApplication.MATCH_NUMBERS)) && password.matches(LocApplication.MATCH_UPPERCASE_CHARS));
     }
 
     /**

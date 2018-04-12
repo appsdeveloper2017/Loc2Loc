@@ -8,15 +8,27 @@
     <string name="action_sign_in">Entra</string>
     <string name="action_register">Regístrate</string>
     <string name="action_sign_in_short">Entra</string>
+    <string name="contact_permission_rationale">"Los permisos para acceder a los Contactos son necesarios
+        para permitir el autocompletado del email."</string>
+
+    <!-- Strings related to errors-->
+    <string name="error_user_does_not_exists">El usuario no existe</string>
+    <string name="error_invalid_user_password">Password incorrecto</string>
+    <string name="error_connection">Error en la conexión: Pruébalo de nuevo más tarde</string>
+    <string name="error_updating_profile">Error en la actualización del perfil: Pruébalo de nuevo más tarde</string>
+    <string name="error_invalid_register_user_name">El nombre de usuario es inválido</string>
+    <string name="error_invalid_register_email">La dirección de correo es inválida</string>
+    <string name="error_invalid_register_repeat_email">Las direcciones de correo no coinciden</string>
+    <string name="error_invalid_register_password">Formato de password inválido</string>
+    <string name="error_incorrect_register_password">Password incorrecto</string>
     <string name="error_invalid_email">La dirección de correo es inválida</string>
     <string name="error_invalid_password">Formato de password incorrecto</string>
     <string name="error_incorrect_password">Password incorrecto</string>
     <string name="error_field_required">Campo requerido</string>
-    <string name="contact_permission_rationale">"Los permisos para acceder a los Contactos son necesarios
-        para permitir el autocompletado del email."</string>
-    <string name="error_user_does_not_exists">El usuario no existe</string>
-    <string name="error_invalid_user_password">Password incorrecto</string>
-    <string name="error_connection">Error en la conexión: Pruébalo de nuevo más tarde</string>
+    <string name="error_field_register_required">Campo requerido</string>
+    <string name="error_user_already_exists">El usuario ya existe</string>
+    <string name="error_weak_password">La contraseña es demasiado débil</string>
+    <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
     <!-- String related to register -->
     <string name="prompt_register_user_name">nombre de usuario</string>
@@ -24,17 +36,8 @@
     <string name="prompt_register_repeat_email">repite el email</string>
     <string name="prompt_register_password">password</string>
     <string name="action_save">Guardar</string>
-    <string name="error_invalid_register_user_name">El nombre de usuario es inválido</string>
-    <string name="error_invalid_register_email">La dirección de correo es inválida</string>
-    <string name="error_invalid_register_repeat_email">Las direcciones de correo no coinciden</string>
-    <string name="error_invalid_register_password">Formato de password inválido</string>
-    <string name="error_incorrect_register_password">Password incorrecto</string>
-    <string name="error_field_register_required">Campo requerido</string>
     <string name="permission_register_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
-    <string name="error_user_already_exists">El usuario ya existe</string>
-    <string name="error_weak_password">La contraseña es demasiado débil</string>
-    <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
     <!-- String related to main activity -->
     <string name="title_activity_main">Loc 2 Loc</string>
@@ -61,8 +64,11 @@
     <string name="edit_name">Editar nombre</string>
     <string name="edit_mail">Editar email</string>
     <string name="edit_password">Cambiar contraseña</string>
+    <string name="old_password">Contraseña actual</string>
+    <string name="new_password">Contraseña nueva</string>
     <string name="title_activity_acces">Acceso</string>
     <string name="name">Nombre</string>
     <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 
 </resources>

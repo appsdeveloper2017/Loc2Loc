@@ -10,13 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.appdesigndm.loc2loc.Components.CustomDialog;
+import com.appdesigndm.loc2loc.Callbacks.OnFinish;
+import com.appdesigndm.loc2loc.Components.EditDataDialog;
+import com.appdesigndm.loc2loc.Components.EditPasswordDialog;
 import com.appdesigndm.loc2loc.Components.ProfilePhotoComponent;
 import com.appdesigndm.loc2loc.Components.ViewProfileComponent;
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Helpers.DBHelper;
+import com.appdesigndm.loc2loc.LocApplication;
 import com.appdesigndm.loc2loc.Models.ErrorModel;
 import com.appdesigndm.loc2loc.Models.UserModel;
 import com.appdesigndm.loc2loc.R;
@@ -31,6 +33,7 @@ import butterknife.ButterKnife;
 public class EditProfileFragment extends Fragment {
 
     public static final String TAG = "Loc2Loc_Error:";
+    public static final String TAG_DIALOG = "Edit_Dialog";
 
     @BindView(R.id.edit_profile_progress)
     ProgressBar progressBar;
@@ -46,6 +49,9 @@ public class EditProfileFragment extends Fragment {
 
     @BindView(R.id.view_mail)
     ViewProfileComponent viewMail;
+
+    @BindView(R.id.view_password)
+    ViewProfileComponent viewPassword;
 
     private DatabaseReference dbr;
     private ValueEventListener listener;
@@ -63,8 +69,8 @@ public class EditProfileFragment extends Fragment {
 
     private void init() {
         ((SettingsActivity) getActivity()).setActionBarTitle(getResources().getString(R.string.toolbar_title_profile_fragment));
-        AuthHelper auth = new AuthHelper();
-        if (auth.getCurrentUser() != null) {
+        AuthHelper auth = new AuthHelper(getContext());
+        if (auth.getAuthenticatedUser() != null) {
             dbr = DBHelper.getInstance();
             showProgressBar();
             listener = getDBUserListener();
@@ -139,40 +145,102 @@ public class EditProfileFragment extends Fragment {
                 launchEditMail();
             }
         });
+
+        viewPassword.setIcon(R.drawable.ic_menu_password);
+        viewPassword.setTitle(getString(R.string.prompt_password));
+        viewPassword.setText(getString(R.string.prompt_password));
+        viewPassword.ofuscateText();
+        viewPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchEditPassword();
+            }
+        });
     }
 
     private void launchEditName() {
-        final CustomDialog dialog = new CustomDialog();
+        final EditDataDialog dialog = new EditDataDialog();
         dialog.setTitle(getString(R.string.edit_name))
                 .setDescription(user.getName())
                 .setRightButtonText(getString(R.string.accept))
                 .setRightButtonListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        user.setName(dialog.getDescriptionContent());
-                        guardarDatos();
-                        dialog.dismiss();
+                        String newName = dialog.getDescriptionContent();
+                        if (AuthHelper.isUserNameValid(newName)) {
+                            user.setName(newName);
+                            saveData(AuthHelper.NAME);
+                            dialog.dismiss();
+                        } else {
+                            LocApplication.printShort(getContext(), R.string.error_invalid_register_user_name);
+                        }
                     }
-                }).show(getFragmentManager(), "CustomDialog");
+                }).show(getFragmentManager(), TAG_DIALOG);
     }
 
     private void launchEditMail() {
-        final CustomDialog dialog = new CustomDialog();
+        final EditDataDialog dialog = new EditDataDialog();
         dialog.setTitle(getString(R.string.edit_mail))
                 .setDescription(user.getEmail())
                 .setRightButtonText(getString(R.string.accept))
                 .setRightButtonListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        user.setEmail(dialog.getDescriptionContent());
-                        guardarDatos();
-                        dialog.dismiss();
+                        String newEmail = dialog.getDescriptionContent();
+                        if(AuthHelper.isEmailValid(newEmail)) {
+                            user.setEmail(newEmail);
+                            saveData(AuthHelper.EMAIL);
+                            dialog.dismiss();
+                        } else {
+                            LocApplication.printShort(getContext(), R.string.error_malformed_mail);
+                        }
                     }
-                }).show(getFragmentManager(), "CustomDialog");
+                }).show(getFragmentManager(), TAG_DIALOG);
     }
 
-    private void guardarDatos() {
-        Toast.makeText(getContext(), user.toString(), Toast.LENGTH_SHORT).show();
+    private void launchEditPassword() {
+        final EditPasswordDialog dialog = new EditPasswordDialog();
+        dialog.setLeftButtonText(getString(R.string.cancel))
+                .setLeftButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                })
+                .setRightButtonText(getString(R.string.accept))
+                .setRightButtonListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (AuthHelper.isPasswordValid(dialog.getNewPassword())) {
+                            savePassword(dialog);
+                                                                               dialog.dismiss();
+                        } else {
+                            LocApplication.printShort(getContext(), R.string.error_invalid_register_password);
+                        }
+                    }
+                })
+                .show(getFragmentManager(), TAG_DIALOG);
+    }
+
+    private void savePassword(final EditPasswordDialog dialog) {
+        dialog.setOnFinish(new OnFinish() {
+            @Override
+            public void run(OnFinishResultCode resultCode) {
+                if (resultCode == OnFinishResultCode.SUCCES) {
+                    dialog.dismiss();
+                } else {
+                    LocApplication.printShort(getContext(), R.string.error_invalid_register_password);
+                }
+            }
+        });
+        AuthHelper auth = new AuthHelper(getContext());
+        auth.updatePassword(dialog.getOldPassword(), dialog.getNewPassword(), dialog);
+    }
+
+    private void saveData(String field) {
+        AuthHelper auth = new AuthHelper(getContext());
+        auth.updateProfile(user, field);
+        LocApplication.printShort(getContext(), user.toString());
         loadData();
     }
 
