@@ -82,8 +82,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                AuthHelper auth = new AuthHelper();
-                if (auth.getCurrentUser() != null) {
+                AuthHelper auth = new AuthHelper(getApplicationContext());
+                if (auth.getAuthenticatedUser() != null) {
                     intent.setClass(SplashScreenActivity.this, MainActivity.class);
                 } else {
                     intent.setClass(SplashScreenActivity.this, AccesActivity.class);
