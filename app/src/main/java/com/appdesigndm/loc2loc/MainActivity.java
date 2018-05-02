@@ -1,6 +1,7 @@
 package com.appdesigndm.loc2loc;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -12,7 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,7 +25,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
     private Toolbar toolbar;
@@ -31,11 +34,22 @@ public class MainActivity extends AppCompatActivity
     private View headerView;
     private TextView userNameTextView;
     private TextView userEmailTextView;
+    private FABToolbarLayout fabToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.uno).setOnClickListener(this);
+        findViewById(R.id.dos).setOnClickListener(this);
+        findViewById(R.id.tres).setOnClickListener(this);
+        findViewById(R.id.floating).setOnClickListener(this);
+
+
+        //Declaración de los objetos del menú de barra.
+
+        fabToolbarLayout =(FABToolbarLayout)findViewById(R.id.fabToolBarLayout);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -179,5 +193,29 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        //Método OnClick de la barra inferior.
+
+        switch (v.getId()){
+            case R.id.floating:
+                fabToolbarLayout.show();
+                break;
+            case R.id.uno:
+                Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
+                fabToolbarLayout.hide();
+                break;
+            case R.id.dos:
+                Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_SHORT).show();
+                fabToolbarLayout.hide();
+                break;
+            case R.id.tres:
+                Toast.makeText(getApplicationContext(),"3",Toast.LENGTH_SHORT).show();
+                fabToolbarLayout.hide();
+                break;
+        }
+
     }
 }

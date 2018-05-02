@@ -12,4 +12,11 @@
 
     <!-- Login screen -->
     <color name="blue">#0070FF</color>
+
+    <!--Floating bar colors-->
+    <color name="verde">#AED581</color>
+    <color name="azul">#64B5F6</color>
+    <color name="naranja">#FFD54F</color>
+    <color name="rojo">#FF7043</color>
+
 </resources>
