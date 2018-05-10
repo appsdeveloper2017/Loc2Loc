@@ -19,4 +19,7 @@
     <color name="naranja">#FFD54F</color>
     <color name="rojo">#FF7043</color>
 
+    <!--LinkUser configurations colors-->
+    <color name="posit">#FFF59D</color>
+
 </resources>

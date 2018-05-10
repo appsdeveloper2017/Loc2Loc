@@ -12,7 +12,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    public static final String TAG = "NOTICIAS";
+    public static final String TAG = "Loc2Loc";
 
     @Override
     public void onTokenRefresh() {

@@ -44,4 +44,8 @@
     <string name="session">Sessió</string>
     <string name="logout">Log out</string>
 
+    <!-- String related LinkUser-->
+    <string name="linkUser_title">Els meus Links</string>
+    <string name="search">Buscar</string>
+
 </resources>

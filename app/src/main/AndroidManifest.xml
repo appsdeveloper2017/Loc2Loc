@@ -51,24 +51,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/splash_theme"/>
+            android:theme="@style/splash_theme" />
 
-        <!--Servicios necesarios para rebicir los mensajes remotos-->
-        <service
-            android:name=".MyFirebaseInstanceIDService">
+        <!-- Servicios necesarios para rebicir los mensajes remotos -->
+        <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-
-        <service
-            android:name=".MyFirebaseMessagingService">
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <!--Fin de los servicios para obtener los mensajes remotos-->
+        <!-- Fin de los servicios para obtener los mensajes remotos -->
+        <activity android:name=".LinkUser"></activity>
     </application>
 
 </manifest>

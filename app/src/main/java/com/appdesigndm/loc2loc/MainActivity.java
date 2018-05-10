@@ -204,7 +204,8 @@ public class MainActivity extends AppCompatActivity
                 fabToolbarLayout.show();
                 break;
             case R.id.uno:
-                Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), LinkUser.class);
+                startActivity(intent);
                 fabToolbarLayout.hide();
                 break;
             case R.id.dos:
