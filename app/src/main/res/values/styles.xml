@@ -59,5 +59,9 @@
     <style name="dialog_text.bold">
         <item name="android:textStyle">bold</item>
     </style>
-
+    <!--Structure basic for a layout-->
+    <style name="estructura">
+        <item name="android:layout_margin">@dimen/large_margin</item>
+    </style>
+    
 </resources>

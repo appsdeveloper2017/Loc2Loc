@@ -33,4 +33,14 @@
     <!-- Dialgo fragment -->
     <color name="separator_grey">@color/medium_grey</color>
 
+
+    <!--Floating bar colors-->
+    <color name="verde">#AED581</color>
+    <color name="azul">#64B5F6</color>
+    <color name="naranja">#FFD54F</color>
+    <color name="rojo">#FF7043</color>
+
+    <!--LinkUser configurations colors-->
+    <color name="posit">#FFF59D</color>
+
 </resources>

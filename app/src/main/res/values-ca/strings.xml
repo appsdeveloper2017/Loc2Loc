@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Loc2Loc</string>
+    <string name="subtitle">Localitza als teus!</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">nom d\'usuari o email</string>
+    <string name="prompt_password">password</string>
+    <string name="action_sign_in">Entra</string>
+    <string name="action_register">Registra\'t</string>
+    <string name="action_sign_in_short">Entra</string>
+    <string name="error_invalid_email">L\'adreça de correu és invàlida</string>
+    <string name="error_invalid_password">Format de password incorrecte</string>
+    <string name="error_incorrect_password">Password incorrecte</string>
+    <string name="error_field_required">Camp requerit</string>
+    <string name="permission_rationale">"Els permisos per accedir als Contactes són necessaris
+        per permetre l'autocompletat del email."</string>
+    <string name="error_user_does_not_exists">L\'usuari no existeix</string>
+    <string name="error_invalid_user_password">Password incorrecte</string>
+    <string name="error_connection">Error a la conexió: Prova-ho de nou més tard</string>
+
+    <!-- String related to register -->
+    <string name="prompt_register_user_name">nom d\'usuari</string>
+    <string name="prompt_register_email">email</string>
+    <string name="prompt_register_repeat_email">repeteix l\'email</string>
+    <string name="prompt_register_password">password</string>
+    <string name="action_save">Guardar</string>
+    <string name="error_invalid_register_user_name">El nom d\'usuari és invàlid</string>
+    <string name="error_invalid_register_email">L\'adreça de correu és invàlida</string>
+    <string name="error_invalid_register_repeat_email">Les adreces de correu no coincideixen</string>
+    <string name="error_invalid_register_password">Format de password invàlid</string>
+    <string name="error_incorrect_register_password">Password incorrecte</string>
+    <string name="error_field_register_required">Camp requerit</string>
+    <string name="permission_register_rationale">"Els permisos per accedir als Contactes són necessaris
+        per permetre l'autocompletat del email."</string>
+    <string name="error_user_already_exists">L\'usuari ja existeix</string>
+    <string name="error_weak_password">La contrasenya és massa feble</string>
+    <string name="error_malformed_mail">Adreça de correu mal formada</string>
+
+    <!-- String related to main activity -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Opcions</string>
+    <string name="session">Sessió</string>
+    <string name="logout">Log out</string>
+
+    <!-- String related LinkUser-->
+    <string name="linkUser_title">Els meus Links</string>
+    <string name="search">Buscar</string>
+
+</resources>

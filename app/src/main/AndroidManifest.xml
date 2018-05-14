@@ -60,7 +60,19 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MenuOptions.EditProfileDialog">
-        </activity>
+        </activity><!-- Servicios necesarios para rebicir los mensajes remotos -->
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- Fin de los servicios para obtener los mensajes remotos -->
+        <activity android:name=".LinkUser"></activity>
     </application>
 
 </manifest>
