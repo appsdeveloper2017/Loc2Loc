@@ -36,6 +36,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".SplashScreenActivity"
@@ -72,7 +75,6 @@
             </intent-filter>
         </service>
         <!-- Fin de los servicios para obtener los mensajes remotos -->
-        <activity android:name=".LinkUser"></activity>
     </application>
 
 </manifest>

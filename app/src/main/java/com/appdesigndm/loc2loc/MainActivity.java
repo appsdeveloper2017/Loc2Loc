@@ -237,8 +237,6 @@ public class MainActivity extends AppCompatActivity
                 fabToolbarLayout.show();
                 break;
             case R.id.uno:
-                Intent intent = new Intent(getApplicationContext(), LinkUser.class);
-                startActivity(intent);
                 fabToolbarLayout.hide();
                 break;
             case R.id.dos:

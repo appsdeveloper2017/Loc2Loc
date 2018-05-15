@@ -9,10 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
-import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     // UI references
     private ImageView imageSplash;
+    private TextView textSplash,subSplash;
     private Context mContext;
 
     @Override
@@ -31,8 +32,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         init();
         final AuthHelper auth = new AuthHelper(getApplicationContext());
-        abrirActivityProvisional(auth);
-//        animateOnCreateViews();
+        //abrirActivityProvisional(auth);
+        animateOnCreateViews();
     }
 
     private void abrirActivityProvisional(AuthHelper auth) {
@@ -53,12 +54,20 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void init() {
 //        LocApplication.fDatabase = FirebaseDatabase.getInstance();
-        imageSplash = (ImageView) findViewById(R.id.imagen_splash);
+        imageSplash = (ImageView) findViewById(R.id.splash_image);
+        textSplash = (TextView)findViewById(R.id.splash_title);
+        subSplash = (TextView)findViewById(R.id.sub_splash);
+        textSplash.setText(R.string.loc);
+        subSplash.setText(R.string.loc2018);
     }
 
     private void animateOnCreateViews() {
-        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.animation_splash_icon);
+        Animation myanim = AnimationUtils.loadAnimation(mContext, R.anim.transition_title_splash);
+        textSplash.startAnimation(myanim);
+
+        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.image_transition);
         animation.setAnimationListener(new Animation.AnimationListener() {
+
             @Override
             public void onAnimationStart(Animation animation) {
 

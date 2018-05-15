@@ -48,4 +48,10 @@
     <string name="linkUser_title">My Links</string>
     <string name="search">Search</string>
 
+    <!--Splash Screen-->
+    <string name="loc">Loc 2 Loc</string>
+    <string name="loc2018">Loc 2 Loc 2018</string>
+
+    <!--15 May 2018-->
+
 </resources>
