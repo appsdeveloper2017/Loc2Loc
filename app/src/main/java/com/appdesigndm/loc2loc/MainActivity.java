@@ -1,7 +1,9 @@
 package com.appdesigndm.loc2loc;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,7 +21,10 @@ import android.widget.Toast;
 
 import com.appdesigndm.loc2loc.Helpers.AuthHelper;
 import com.appdesigndm.loc2loc.Login.AccesActivity;
+import com.appdesigndm.loc2loc.Login.LoginFragment;
 import com.appdesigndm.loc2loc.MenuOptions.SettingsActivity;
+import com.appdesigndm.loc2loc.MenuOptionsFloatBar.FragmentLinkUser;
+import com.appdesigndm.loc2loc.MenuOptionsFloatBar.FragmentSelector;
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,8 +34,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.nio.channels.Selector;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, View.OnClickListener,FragmentLinkUser.OnFragmentInteractionListener {
 
     private GoogleMap mMap;
     private Toolbar toolbar;
@@ -237,6 +244,11 @@ public class MainActivity extends AppCompatActivity
                 fabToolbarLayout.show();
                 break;
             case R.id.uno:
+                FragmentSelector fragSelector = new FragmentSelector(1);
+                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
+                intent.putExtra("Fragment",fragSelector);
+                startActivity(intent);
+                //getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentLinkUser()).commit();
                 fabToolbarLayout.hide();
                 break;
             case R.id.dos:
@@ -248,6 +260,11 @@ public class MainActivity extends AppCompatActivity
                 fabToolbarLayout.hide();
                 break;
         }
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

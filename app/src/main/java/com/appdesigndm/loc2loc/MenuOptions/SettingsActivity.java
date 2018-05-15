@@ -5,7 +5,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.appdesigndm.loc2loc.MenuOptionsFloatBar.FragmentLinkUser;
 import com.appdesigndm.loc2loc.R;
 
 import butterknife.BindView;
@@ -29,7 +31,15 @@ public class SettingsActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_back_arrow_white);
         setActionBarTitle(getResources().getString(R.string.toolbar_title_profile_fragment));
 
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle !=null){
+            int parameter = bundle.getInt("Fragment");
+           if (parameter==1);
+            getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentLinkUser()).commit();
+        }else {
+
         getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new EditProfileFragment()).commit();
+    }
     }
 
     @Override
