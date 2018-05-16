@@ -41,4 +41,8 @@
 
     <!--Floating bar-->
     <dimen name="floating_bar">55dp</dimen>
+
+    <!--FragmentUserLink secreen margins and lines, and size fonts-->
+    <dimen name="size_title_user_link">40dp</dimen>
+    <dimen name="line">1dp</dimen>
 </resources>

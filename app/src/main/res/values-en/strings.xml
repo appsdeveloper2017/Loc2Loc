@@ -52,6 +52,10 @@
     <string name="loc">Loc 2 Loc</string>
     <string name="loc2018">Loc 2 Loc 2018</string>
 
-    <!--15 May 2018-->
+    <!-- String Related FragmentUserLink  -->
+    <string name="user_link">Link with other users</string>
+    <string name="link">Links</string>
+
+    <!--16 May 2018-->
 
 </resources>

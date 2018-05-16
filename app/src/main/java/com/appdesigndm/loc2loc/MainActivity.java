@@ -246,9 +246,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.uno:
                 FragmentSelector fragSelector = new FragmentSelector(1);
                 Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-                intent.putExtra("Fragment",fragSelector);
+                intent.putExtra("Fragment",fragSelector.getSelectorFragment());
                 startActivity(intent);
-                //getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentLinkUser()).commit();
                 fabToolbarLayout.hide();
                 break;
             case R.id.dos:

@@ -38,11 +38,11 @@
 
     <!-- String related to main activity -->
     <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Obre la barra de navegació</string>
+    <string name="navigation_drawer_close">Tanca la barra de navegació</string>
     <string name="action_settings">Opcions</string>
     <string name="session">Sessió</string>
-    <string name="logout">Log out</string>
+    <string name="logout">Sortir</string>
 
     <!-- String related LinkUser-->
     <string name="linkUser_title">Els meus Links</string>
@@ -52,6 +52,10 @@
     <string name="loc">Loc 2 Loc</string>
     <string name="loc2018">Loc 2 Loc 2018</string>
 
-    <!--15 May 2018-->
+    <!-- String Related FragmentUserLink  -->
+    <string name="user_link">Link amb usuaris</string>
+    <string name="link">Vincula</string>
+
+    <!--16 May 2018-->
 
 </resources>

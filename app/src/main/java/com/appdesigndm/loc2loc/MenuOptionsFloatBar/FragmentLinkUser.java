@@ -4,15 +4,33 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class FragmentLinkUser extends Fragment {
+
+    //Title and input edit text;
+    @BindView(R.id.tuser)
+    TextView title_link_user;
+
+    @BindView(R.id.buscar_link)
+    EditText inputlink;
+
+    @BindView(R.id.linear_link)
+    LinearLayout layout_link_visivility;
 
     private static final String ID = "ID";
     private static final String EMAIL = "EMAIL";
@@ -23,6 +41,7 @@ public class FragmentLinkUser extends Fragment {
     private EditText search;
 
     private OnFragmentInteractionListener mListener;
+
 
     public FragmentLinkUser() {
         // Required empty public constructor
@@ -47,10 +66,28 @@ public class FragmentLinkUser extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_link_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_link_user, container, false);
+        ButterKnife.bind(this, view);
+
+        inputlink.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            title_link_user.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

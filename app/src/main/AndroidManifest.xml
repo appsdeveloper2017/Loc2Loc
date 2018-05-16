@@ -61,7 +61,9 @@
         <activity
             android:name=".MenuOptions.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".MenuOptions.EditProfileDialog">
         </activity><!-- Servicios necesarios para rebicir los mensajes remotos -->
         <service android:name=".MyFirebaseInstanceIDService">
