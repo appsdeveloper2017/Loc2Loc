@@ -40,7 +40,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!--Floating bar-->
-    <dimen name="floating_bar">55dp</dimen>
+    <dimen name="floating_bar">50dp</dimen>
 
     <!--FragmentUserLink secreen margins and lines, and size fonts-->
     <dimen name="size_title_user_link">40dp</dimen>

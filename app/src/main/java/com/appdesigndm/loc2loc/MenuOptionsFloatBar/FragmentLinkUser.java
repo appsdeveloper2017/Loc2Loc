@@ -9,12 +9,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.appdesigndm.loc2loc.MainActivity;
 import com.appdesigndm.loc2loc.R;
 
 import butterknife.BindView;
@@ -32,13 +32,14 @@ public class FragmentLinkUser extends Fragment {
     @BindView(R.id.linear_link)
     LinearLayout layout_link_visivility;
 
-    private static final String ID = "ID";
+    @BindView(R.id.separator_line)
+    View line;
+
     private static final String EMAIL = "EMAIL";
 
     // TODO: Rename and change types of parameters
-    private String idUser;
     private String emailUser;
-    private EditText search;
+    private boolean iftransition = false;
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,10 +48,9 @@ public class FragmentLinkUser extends Fragment {
         // Required empty public constructor
     }
 
-    public static FragmentLinkUser newInstance(String idUser, String emailUser) {
+    public static FragmentLinkUser newInstance(String emailUser) {
         FragmentLinkUser fragment = new FragmentLinkUser();
         Bundle args = new Bundle();
-        args.putString(ID, idUser);
         args.putString(EMAIL, emailUser);
         fragment.setArguments(args);
         return fragment;
@@ -60,7 +60,6 @@ public class FragmentLinkUser extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            idUser = getArguments().getString(ID);
             emailUser = getArguments().getString(EMAIL);
         }
     }
@@ -71,6 +70,18 @@ public class FragmentLinkUser extends Fragment {
         View view = inflater.inflate(R.layout.fragment_link_user, container, false);
         ButterKnife.bind(this, view);
 
+        openAnimationLayout();
+
+        inputlink.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+            if (!iftransition){
+                closeAnimationLayout();
+            }
+            }
+        });
+
+
         inputlink.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -79,8 +90,8 @@ public class FragmentLinkUser extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            title_link_user.setVisibility(View.GONE);
-            }
+                searchUsers();
+                }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -88,6 +99,69 @@ public class FragmentLinkUser extends Fragment {
             }
         });
         return view;
+    }
+
+    private void searchUsers() {
+        emailUser = String.valueOf(inputlink.getText());
+    }
+
+    private void openAnimationLayout() {
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.title_transition_open);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                title_link_user.setVisibility(View.VISIBLE);
+                line.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        layout_link_visivility.startAnimation(animation);
+    }
+
+    private void closeAnimationLayout() {
+
+        iftransition = true;
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.title_transition_close);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                title_link_user.setVisibility(View.GONE);
+                line.setVisibility(View.GONE);
+
+                LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                        /*width*/ ViewGroup.LayoutParams.MATCH_PARENT,
+                        /*height*/ ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                layout_link_visivility.setLayoutParams(param);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        title_link_user.startAnimation(animation);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

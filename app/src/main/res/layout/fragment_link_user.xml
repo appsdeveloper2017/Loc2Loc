@@ -16,7 +16,9 @@
             android:id="@+id/linear_link"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_header_height"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:id="@+id/tuser"
@@ -34,9 +36,10 @@
                 android:background="@drawable/rounded_edittext_states"
                 android:hint="@string/search"
                 android:inputType="textAutoComplete"
-                android:paddingStart="@dimen/xlarge_margin" />
+                android:paddingStart="@dimen/xlarge_margin"/>
 
             <View
+                android:id="@+id/separator_line"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/line"
                 android:layout_marginEnd="@dimen/large_margin"
@@ -53,7 +56,8 @@
                 android:id="@+id/recycler_link"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/soft_grey"></android.support.v7.widget.RecyclerView>
+                android:background="@color/soft_grey">
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
     </LinearLayout>

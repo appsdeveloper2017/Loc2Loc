@@ -128,7 +128,9 @@ public class EditProfileFragment extends Fragment {
 
         viewName.setIcon(R.drawable.ic_menu_profile);
         viewName.setTitle(getString(R.string.name));
-        viewName.setText(user.getName());
+        //viewName.setText(user.getName()); Borrar linea de abajo.
+        viewName.setText("Alex");
+
         viewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +140,8 @@ public class EditProfileFragment extends Fragment {
 
         viewMail.setIcon(R.drawable.ic_menu_mail);
         viewMail.setTitle(getString(R.string.prompt_email));
-        viewMail.setText(user.getEmail());
+        //viewMail.setText(user.getEmail()); // Borrar linea de abajo.
+        viewMail.setText("mail@mail.com");
         viewMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
