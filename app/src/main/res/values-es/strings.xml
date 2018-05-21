@@ -3,8 +3,8 @@
     <string name="subtitle">Localiza a los tuyos!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">nombre de usuario o email</string>
-    <string name="prompt_password">password</string>
+    <string name="prompt_email">Nombre de usuario o email</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Entra</string>
     <string name="action_register">Regístrate</string>
     <string name="action_sign_in_short">Entra</string>
@@ -19,9 +19,9 @@
     <string name="error_connection">Error en la conexión: Inténtalo de nuevo más tarde</string>
 
     <!-- String related to register -->
-    <string name="prompt_register_user_name">nombre de usuario</string>
-    <string name="prompt_register_email">email</string>
-    <string name="prompt_register_repeat_email">repite el email</string>
+    <string name="prompt_register_user_name">Nombre de usuario</string>
+    <string name="prompt_register_email">Email</string>
+    <string name="prompt_register_repeat_email">Repite el email</string>
     <string name="prompt_register_password">password</string>
     <string name="action_save">Guardar</string>
     <string name="error_invalid_register_user_name">El nombre de usuario es inválido</string>
@@ -55,6 +55,11 @@
     <!-- String Related FragmentUserLink  -->
     <string name="user_link">Link con usuarios</string>
     <string name="link">Enlaces</string>
+
+    <!--String Related Item Card FragmentUserLink-->
+    <string name="id">Id:</string>
+    <string name="name_user">Nombre:</string>
+    <string name="email_user">Email:</string>
 
     <!--16 May 2018-->
 

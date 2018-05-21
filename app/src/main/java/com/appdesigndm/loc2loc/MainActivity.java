@@ -245,13 +245,16 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.uno:
                 FragmentSelector fragSelector = new FragmentSelector(1);
-                Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
-                intent.putExtra("Fragment",fragSelector.getSelectorFragment());
-                startActivity(intent);
+                Intent intentLinks = new Intent(getApplicationContext(),SettingsActivity.class);
+                intentLinks.putExtra("Fragment",fragSelector.getSelectorFragment());
+                startActivity(intentLinks);
                 fabToolbarLayout.hide();
                 break;
             case R.id.dos:
-                Toast.makeText(getApplicationContext(),"2",Toast.LENGTH_SHORT).show();
+                FragmentSelector fragSelector2 = new FragmentSelector(2);
+                Intent intentList = new Intent(getApplicationContext(),SettingsActivity.class);
+                intentList.putExtra("Fragment",fragSelector2.getSelectorFragment());
+                startActivity(intentList);
                 fabToolbarLayout.hide();
                 break;
             case R.id.tres:

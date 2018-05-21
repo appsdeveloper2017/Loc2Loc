@@ -3,8 +3,8 @@
     <string name="subtitle">Locate yours!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">user name or email</string>
-    <string name="prompt_password">password</string>
+    <string name="prompt_email">User name or email</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_register">Register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -19,10 +19,10 @@
     <string name="error_connection">Connection error: Try again later</string>
 
     <!-- String related to register -->
-    <string name="prompt_register_user_name">user name</string>
-    <string name="prompt_register_email">email</string>
-    <string name="prompt_register_repeat_email">repeat email</string>
-    <string name="prompt_register_password">password</string>
+    <string name="prompt_register_user_name">User name</string>
+    <string name="prompt_register_email">Email</string>
+    <string name="prompt_register_repeat_email">Repeat email</string>
+    <string name="prompt_register_password">Password</string>
     <string name="action_save">Save</string>
     <string name="error_invalid_register_user_name">This user name is invalid</string>
     <string name="error_invalid_register_email">This email address is invalid</string>
@@ -34,7 +34,7 @@
         completions."</string>
     <string name="error_user_already_exists">User already exists</string>
     <string name="error_weak_password">Weak password</string>
-    <string name="error_malformed_mail">email adress is malformed</string>
+    <string name="error_malformed_mail">Email adress is malformed</string>
 
     <!-- String related to main activity -->
     <string name="title_activity_main">MainActivity</string>
@@ -55,6 +55,11 @@
     <!-- String Related FragmentUserLink  -->
     <string name="user_link">Link with other users</string>
     <string name="link">Links</string>
+
+    <!--String Related Item Card FragmentUserLink-->
+    <string name="id">Id:</string>
+    <string name="name_user">Name:</string>
+    <string name="email_user">Email:</string>
 
     <!--16 May 2018-->
 

@@ -3,8 +3,8 @@
     <string name="subtitle">Localitza als teus!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">nom d\'usuari o email</string>
-    <string name="prompt_password">password</string>
+    <string name="prompt_email">Nom d\'usuari o email</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Entra</string>
     <string name="action_register">Registra\'t</string>
     <string name="action_sign_in_short">Entra</string>
@@ -19,10 +19,10 @@
     <string name="error_connection">Error a la conexió: Prova-ho de nou més tard</string>
 
     <!-- String related to register -->
-    <string name="prompt_register_user_name">nom d\'usuari</string>
-    <string name="prompt_register_email">email</string>
-    <string name="prompt_register_repeat_email">repeteix l\'email</string>
-    <string name="prompt_register_password">password</string>
+    <string name="prompt_register_user_name">Nom d\'usuari</string>
+    <string name="prompt_register_email">Email</string>
+    <string name="prompt_register_repeat_email">Repeteix l\'email</string>
+    <string name="prompt_register_password">Password</string>
     <string name="action_save">Guardar</string>
     <string name="error_invalid_register_user_name">El nom d\'usuari és invàlid</string>
     <string name="error_invalid_register_email">L\'adreça de correu és invàlida</string>
@@ -55,6 +55,11 @@
     <!-- String Related FragmentUserLink  -->
     <string name="user_link">Link amb usuaris</string>
     <string name="link">Vincula</string>
+
+    <!--String Related Item Card FragmentUserLink-->
+    <string name="id">Id:</string>
+    <string name="name_user">Nomb:</string>
+    <string name="email_user">Email:</string>
 
     <!--16 May 2018-->
 

@@ -15,7 +15,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appdesigndm.loc2loc.Models.UserModel;
 import com.appdesigndm.loc2loc.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +72,13 @@ public class FragmentLinkUser extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_link_user, container, false);
         ButterKnife.bind(this, view);
+
+        ArrayList<UserModel> lista = new ArrayList<>(5);
+        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
+        lista.add(new UserModel("bea","beatriz","bea@bea.com",null));
+        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
+        lista.add(new UserModel("bea","beatriz","bea@bea.com",null));
+        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
 
         openAnimationLayout();
 

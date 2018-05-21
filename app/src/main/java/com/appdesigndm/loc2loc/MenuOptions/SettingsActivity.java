@@ -11,7 +11,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.appdesigndm.loc2loc.MenuOptionsFloatBar.FragmentLinkUser;
+import com.appdesigndm.loc2loc.MenuOptionsFloatBar.FragmentListUsers;
+import com.appdesigndm.loc2loc.Models.UserModel;
 import com.appdesigndm.loc2loc.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +51,8 @@ public class SettingsActivity extends AppCompatActivity implements FragmentLinkU
                         getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentLinkUser()).commit();
                         break;
                     case 2:
-                        //getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentLinkUser()).commit();
+                        setActionBarTitle(getResources().getString(R.string.mylinks));
+                        getSupportFragmentManager().beginTransaction().add(R.id.settings_container, new FragmentListUsers()).commit();
                         break;
 
                     case 3:

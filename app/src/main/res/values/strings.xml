@@ -3,8 +3,8 @@
     <string name="subtitle">Localiza a los tuyos!</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">email</string>
-    <string name="prompt_password">password</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in">Entra</string>
     <string name="action_register">Regístrate</string>
     <string name="action_sign_in_short">Entra</string>
@@ -31,10 +31,10 @@
     <string name="error_malformed_mail">Dirección de correo mal formada</string>
 
     <!-- String related to register -->
-    <string name="prompt_register_user_name">nombre de usuario</string>
-    <string name="prompt_register_email">email</string>
-    <string name="prompt_register_repeat_email">repite el email</string>
-    <string name="prompt_register_password">password</string>
+    <string name="prompt_register_user_name">Nombre de usuario</string>
+    <string name="prompt_register_email">Email</string>
+    <string name="prompt_register_repeat_email">Repite el email</string>
+    <string name="prompt_register_password">Password</string>
     <string name="action_save">Guardar</string>
     <string name="permission_register_rationale">"Los permisos para acceder a los Contactos son necesarios
         para permitir el autocompletado del email."</string>
@@ -82,6 +82,15 @@
     <!-- String Related FragmentUserLink  -->
     <string name="user_link">Link con usuarios</string>
     <string name="link">Links</string>
+
+    <!--String Related Item Card FragmentUserLink-->
+    <string name="id">Id:</string>
+    <string name="name_user">Nombre:</string>
+    <string name="email_user">Email:</string>
+
+    <!--Strings Related FrgamentListUser-->
+    <string name="mylinks">Mis links</string>
+
 
     <!--16 May 2018-->
 
