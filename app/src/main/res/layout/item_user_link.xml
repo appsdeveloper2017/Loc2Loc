@@ -15,15 +15,12 @@ android:id="@+id/item_link_user">
         android:orientation="horizontal"
         android:background="@color/white">
 
-        <ImageView
+        <com.appdesigndm.loc2loc.Components.ProfilePhotoComponent
             android:id="@+id/photo_user"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/large_margin"
-            android:layout_marginLeft="@dimen/xlarge_margin"
-            android:layout_marginTop="@dimen/large_margin"
-            android:layout_marginBottom="@dimen/large_margin"/>
+            android:background="@drawable/mono"/>
 
        <TableLayout
            android:layout_width="match_parent"
@@ -39,9 +36,9 @@ android:id="@+id/item_link_user">
                    android:layout_weight="1"
                    android:gravity="center"/>
                <TextView
+                   android:id="@+id/item_id"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="01"
                    android:layout_weight="1"
                    android:gravity="center"/>
            </TableRow>
@@ -54,6 +51,7 @@ android:id="@+id/item_link_user">
                    android:layout_weight="1"
                    android:gravity="center"/>
                <TextView
+                   android:id="@+id/item_name"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="Alex"
@@ -69,18 +67,13 @@ android:id="@+id/item_link_user">
                    android:layout_weight="1"
                    android:gravity="center"/>
                <TextView
+                   android:id="@+id/item_mail"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="alexmailwork@gmail.com"
                    android:layout_weight="1"
                    android:gravity="center"/>
            </TableRow>
        </TableLayout>
-
-
-
-
-
     </LinearLayout>
 </FrameLayout>
 </android.support.v7.widget.CardView>

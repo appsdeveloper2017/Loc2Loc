@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appdesigndm.loc2loc.Adapters.AdapterUserLink;
 import com.appdesigndm.loc2loc.Models.UserModel;
 import com.appdesigndm.loc2loc.R;
 
@@ -73,13 +76,6 @@ public class FragmentLinkUser extends Fragment {
         View view = inflater.inflate(R.layout.fragment_link_user, container, false);
         ButterKnife.bind(this, view);
 
-        ArrayList<UserModel> lista = new ArrayList<>(5);
-        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
-        lista.add(new UserModel("bea","beatriz","bea@bea.com",null));
-        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
-        lista.add(new UserModel("bea","beatriz","bea@bea.com",null));
-        lista.add(new UserModel("alexito", "alex", "alex@alex.com", null));
-
         openAnimationLayout();
 
         inputlink.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -108,6 +104,14 @@ public class FragmentLinkUser extends Fragment {
 
             }
         });
+
+        RecyclerView contenedor = (RecyclerView) view.findViewById(R.id.recycler_link);
+        contenedor.setHasFixedSize(true);
+
+        LinearLayoutManager layout = new LinearLayoutManager(view.getContext());
+        layout.setOrientation(LinearLayoutManager.VERTICAL);
+        contenedor.setLayoutManager(layout);
+        contenedor.setAdapter(new AdapterUserLink(addUsers()));
         return view;
     }
 
@@ -211,5 +215,14 @@ public class FragmentLinkUser extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public ArrayList<UserModel> addUsers(){
+        ArrayList<UserModel> list = new ArrayList<>(5);
+        list.add(new UserModel("alex","Alex","alex@alex.com",null));
+        list.add(new UserModel("alex","Alex","alex@alex.com",null));
+        list.add(new UserModel("alex","Alex","alex@alex.com",null));
+        list.add(new UserModel("alex","Alex","alex@alex.com",null));
+        list.add(new UserModel("alex","Alex","alex@alex.com",null));
+        return list;
     }
 }
